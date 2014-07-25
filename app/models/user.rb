@@ -6,6 +6,6 @@ class User < ActiveRecord::Base
   has_many :uploads, :as => :attachable
 
   extend Enumerize
-  enumerize :role, in: { user: 1, spec: 2, dispatcher: 3, admin: 4 }
+  enumerize :role, in: { user: 1, spec: 2, dispatcher: 3, admin: 4 }, default: :user
 
 end
