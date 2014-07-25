@@ -57,6 +57,6 @@ end
 
 gem 'devise'
 #gem 'cancancan'
-#gem 'enumerize'
+gem 'enumerize'
 #gem 'state_machine'
-#gem 'carrierwave'
+gem 'carrierwave'

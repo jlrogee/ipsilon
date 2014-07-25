@@ -32,8 +32,9 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string    :firstname, null: false, default: ""
       t.string    :lastname,  null: false, default: ""
       t.string    :phone
-      t.belongs_to :role
+      t.integer :role_value
       t.belongs_to :organization
+      t.belongs_to :departament
 
       t.timestamps
     end
