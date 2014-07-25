@@ -12,5 +12,5 @@ rvm:
  deploy:
   provider: heroku
   api_key: "f5cfe541-52bc-4a5a-a32b-d06b0e8779fe"
-  app: my-app-123
+  app: ipsilonrb
   run: "rake db:migrate"
