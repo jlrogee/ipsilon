@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20140725104123) do
     t.integer  "problem_id"
     t.integer  "create_user_id"
     t.integer  "change_status_id"
-    t.string   "file"
     t.text     "description"
     t.datetime "create_at"
   end
@@ -37,7 +36,6 @@ ActiveRecord::Schema.define(version: 20140725104123) do
     t.integer  "status_id"
     t.integer  "category_id"
     t.integer  "asset_id"
-    t.string   "file"
     t.text     "description"
     t.datetime "time_to_close"
     t.datetime "fact_close"
@@ -74,8 +72,9 @@ ActiveRecord::Schema.define(version: 20140725104123) do
     t.string   "firstname",              default: "", null: false
     t.string   "lastname",               default: "", null: false
     t.string   "phone"
-    t.integer  "role_id"
+    t.integer  "role"
     t.integer  "organization_id"
+    t.integer  "departament_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
