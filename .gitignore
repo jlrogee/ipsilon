@@ -27,3 +27,4 @@ capybara-*.html
 /config/initializers/secret_token.rb
 .idea
 .DS_Store
+*~
