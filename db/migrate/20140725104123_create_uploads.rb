@@ -1,7 +1,7 @@
 class CreateUploads < ActiveRecord::Migration
   def change
     create_table :uploads do |t|
-      t.string :name
+      t.string :avatar
       t.references :attachable, polymorphic: true
     end
   end

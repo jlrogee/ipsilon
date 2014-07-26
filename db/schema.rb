@@ -11,22 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140725104123) do
+ActiveRecord::Schema.define(version: 20140726033851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "problem_works", force: true do |t|
-    t.integer  "problem_id"
-    t.integer  "create_user_id"
-    t.integer  "change_status_id"
-    t.text     "description"
-    t.datetime "create_at"
-  end
-
-  add_index "problem_works", ["change_status_id"], name: "index_problem_works_on_change_status_id", using: :btree
-  add_index "problem_works", ["create_user_id"], name: "index_problem_works_on_create_user_id", using: :btree
-  add_index "problem_works", ["problem_id"], name: "index_problem_works_on_problem_id", using: :btree
 
   create_table "problems", force: true do |t|
     t.integer  "create_user_id"
@@ -47,8 +35,21 @@ ActiveRecord::Schema.define(version: 20140725104123) do
   add_index "problems", ["last_update_user_id"], name: "index_problems_on_last_update_user_id", using: :btree
   add_index "problems", ["performer_user_id"], name: "index_problems_on_performer_user_id", using: :btree
 
+  create_table "solutions", force: true do |t|
+    t.integer  "problem_id"
+    t.integer  "create_user_id"
+    t.integer  "change_status_id"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "solutions", ["change_status_id"], name: "index_solutions_on_change_status_id", using: :btree
+  add_index "solutions", ["create_user_id"], name: "index_solutions_on_create_user_id", using: :btree
+  add_index "solutions", ["problem_id"], name: "index_solutions_on_problem_id", using: :btree
+
   create_table "uploads", force: true do |t|
-    t.string  "name"
+    t.string  "avatar"
     t.integer "attachable_id"
     t.string  "attachable_type"
   end
