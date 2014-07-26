@@ -5,4 +5,14 @@ class Problem < ActiveRecord::Base
   validates :description, presence: true
   mount_uploader :file, AvatarUploader
   has_many :uploads, :as => :attachable
+
+  state_machine :initial => :new do
+    state :work
+    state :reply
+    state :returned
+    state :done
+    state :closed
+    state :dispath
+  end
+
 end

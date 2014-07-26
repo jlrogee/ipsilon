@@ -11,17 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140726033851) do
+ActiveRecord::Schema.define(version: 20140726101154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "knowledge_bases", force: true do |t|
+    t.integer  "type"
+    t.string   "kbname"
+    t.text     "description"
+    t.text     "instruction"
+    t.integer  "create_user_id"
+    t.integer  "update_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "knowledge_bases", ["create_user_id"], name: "index_knowledge_bases_on_create_user_id", using: :btree
+  add_index "knowledge_bases", ["update_user_id"], name: "index_knowledge_bases_on_update_user_id", using: :btree
 
   create_table "problems", force: true do |t|
     t.integer  "create_user_id"
     t.integer  "performer_user_id"
     t.integer  "last_update_user_id"
     t.integer  "priority_id"
-    t.integer  "status_id"
+    t.string   "state"
     t.integer  "category_id"
     t.integer  "asset_id"
     t.text     "description"
@@ -38,15 +52,15 @@ ActiveRecord::Schema.define(version: 20140726033851) do
   create_table "solutions", force: true do |t|
     t.integer  "problem_id"
     t.integer  "create_user_id"
-    t.integer  "change_status_id"
+    t.integer  "state_id"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "solutions", ["change_status_id"], name: "index_solutions_on_change_status_id", using: :btree
   add_index "solutions", ["create_user_id"], name: "index_solutions_on_create_user_id", using: :btree
   add_index "solutions", ["problem_id"], name: "index_solutions_on_problem_id", using: :btree
+  add_index "solutions", ["state_id"], name: "index_solutions_on_state_id", using: :btree
 
   create_table "uploads", force: true do |t|
     t.string  "avatar"
