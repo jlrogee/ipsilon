@@ -48,11 +48,9 @@ ActiveRecord::Schema.define(version: 20140725104123) do
   add_index "problems", ["performer_user_id"], name: "index_problems_on_performer_user_id", using: :btree
 
   create_table "uploads", force: true do |t|
-    t.string   "name"
-    t.integer  "attachable_id"
-    t.string   "attachable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "name"
+    t.integer "attachable_id"
+    t.string  "attachable_type"
   end
 
   create_table "users", force: true do |t|
@@ -73,7 +71,6 @@ ActiveRecord::Schema.define(version: 20140725104123) do
     t.string   "lastname",               default: "", null: false
     t.string   "phone"
     t.integer  "role"
-    t.integer  "organization_id"
     t.integer  "departament_id"
     t.datetime "created_at"
     t.datetime "updated_at"
