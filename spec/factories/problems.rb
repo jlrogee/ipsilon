@@ -2,8 +2,11 @@
 
 FactoryGirl.define do
   factory :problem do
-    description { Faker::Lorem.paragraphs(paragraph_count = 3, supplemental = false) }
-    state { :new }
-
+    factory :first_problem do
+      description { Faker::Lorem.paragraph }
+    end
+    factory :second_problem do
+      description { Faker::Lorem.paragraph }
+    end
   end
 end
