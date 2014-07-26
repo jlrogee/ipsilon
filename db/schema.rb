@@ -11,10 +11,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140725045129) do
+ActiveRecord::Schema.define(version: 20140726101154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "knowledge_bases", force: true do |t|
+    t.integer  "type"
+    t.string   "kbname"
+    t.text     "description"
+    t.text     "instruction"
+    t.integer  "create_user_id"
+    t.integer  "update_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "knowledge_bases", ["create_user_id"], name: "index_knowledge_bases_on_create_user_id", using: :btree
+  add_index "knowledge_bases", ["update_user_id"], name: "index_knowledge_bases_on_update_user_id", using: :btree
+
+  create_table "problems", force: true do |t|
+    t.integer  "create_user_id"
+    t.integer  "performer_user_id"
+    t.integer  "last_update_user_id"
+    t.integer  "priority_id"
+    t.string   "state"
+    t.integer  "category_id"
+    t.integer  "asset_id"
+    t.text     "description"
+    t.datetime "time_to_close"
+    t.datetime "fact_close"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "problems", ["create_user_id"], name: "index_problems_on_create_user_id", using: :btree
+  add_index "problems", ["last_update_user_id"], name: "index_problems_on_last_update_user_id", using: :btree
+  add_index "problems", ["performer_user_id"], name: "index_problems_on_performer_user_id", using: :btree
+
+  create_table "solutions", force: true do |t|
+    t.integer  "problem_id"
+    t.integer  "create_user_id"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "solutions", ["create_user_id"], name: "index_solutions_on_create_user_id", using: :btree
+  add_index "solutions", ["problem_id"], name: "index_solutions_on_problem_id", using: :btree
+
+  create_table "uploads", force: true do |t|
+    t.string  "avatar"
+    t.integer "attachable_id"
+    t.string  "attachable_type"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -33,8 +83,8 @@ ActiveRecord::Schema.define(version: 20140725045129) do
     t.string   "firstname",              default: "", null: false
     t.string   "lastname",               default: "", null: false
     t.string   "phone"
-    t.integer  "role_id"
-    t.integer  "organization_id"
+    t.integer  "role"
+    t.integer  "departament_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

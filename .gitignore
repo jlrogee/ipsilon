@@ -19,6 +19,7 @@
 /config/database.yml
 /config/secrets.yml
 /public/system
+/public/uploads
 /spec/tmp
 **.orig
 rerun.txt
