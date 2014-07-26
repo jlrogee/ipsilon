@@ -62,5 +62,8 @@ RSpec.describe Problem, :type => :model do
     expect { @problem.send("switch_to_c") }.to change(@problem, :state).from('dispath').to('closed')
   end
 
+  it { is_expected.to belong_to(:create_user).class_name('User') }
+  it { is_expected.to belong_to(:last_update_user).class_name('User') }
+  it { is_expected.to belong_to(:performer_user).class_name('User') }
 
 end
