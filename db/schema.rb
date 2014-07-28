@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140726142610) do
+ActiveRecord::Schema.define(version: 20140727182657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,20 @@ ActiveRecord::Schema.define(version: 20140726142610) do
     t.datetime "updated_at"
   end
 
+  create_table "departaments", force: true do |t|
+    t.string   "depname"
+    t.integer  "organization_id"
+    t.string   "adress"
+    t.string   "phone"
+    t.string   "city"
+    t.integer  "zipcode"
+    t.string   "country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "departaments", ["organization_id"], name: "index_departaments_on_organization_id", using: :btree
+
   create_table "knowledge_bases", force: true do |t|
     t.integer  "type"
     t.string   "kbname"
@@ -39,6 +53,24 @@ ActiveRecord::Schema.define(version: 20140726142610) do
 
   add_index "knowledge_bases", ["create_user_id"], name: "index_knowledge_bases_on_create_user_id", using: :btree
   add_index "knowledge_bases", ["update_user_id"], name: "index_knowledge_bases_on_update_user_id", using: :btree
+
+  create_table "organizations", force: true do |t|
+    t.string   "orgname"
+    t.string   "address"
+    t.string   "phone"
+    t.string   "city"
+    t.integer  "zipcode"
+    t.string   "country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "priorities", force: true do |t|
+    t.string   "prname"
+    t.integer  "days_to_close"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "problems", force: true do |t|
     t.integer  "create_user_id"
@@ -62,7 +94,6 @@ ActiveRecord::Schema.define(version: 20140726142610) do
   create_table "solutions", force: true do |t|
     t.integer  "problem_id"
     t.integer  "create_user_id"
-    t.integer  "state_id"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -70,7 +101,6 @@ ActiveRecord::Schema.define(version: 20140726142610) do
 
   add_index "solutions", ["create_user_id"], name: "index_solutions_on_create_user_id", using: :btree
   add_index "solutions", ["problem_id"], name: "index_solutions_on_problem_id", using: :btree
-  add_index "solutions", ["state_id"], name: "index_solutions_on_state_id", using: :btree
 
   create_table "uploads", force: true do |t|
     t.string  "avatar"
