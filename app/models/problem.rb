@@ -2,8 +2,10 @@ class Problem < ActiveRecord::Base
   belongs_to :create_user, class_name: User
   belongs_to :performer_user, class_name: User
   belongs_to :last_update_user, class_name: User
+  belongs_to :priority
   validates :description, presence: true
   has_many :uploads, :as => :attachable
+  
 
   state_machine :state, :initial => :new do
     event :switch_to_w do
