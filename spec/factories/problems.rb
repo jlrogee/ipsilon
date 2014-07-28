@@ -2,11 +2,6 @@
 
 FactoryGirl.define do
   factory :problem do
-    factory :first_problem do
       description { Faker::Lorem.paragraph }
-    end
-    factory :second_problem do
-      description { Faker::Lorem.paragraph }
-    end
-  end
+   end
 end

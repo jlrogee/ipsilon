@@ -2,13 +2,13 @@
 
 FactoryGirl.define do
   factory :knowledge_basis, :class => 'KnowledgeBase' do
-    factory :first do
+    factory :kb do
       kbname { Faker::Name.title }
       type { :kb }
       description { Faker::Lorem.paragraph(paragraph_count = 3, supplemental = false) }
       instruction { Faker::Lorem.paragraph(paragraph_count = 3, supplemental = false) }
     end
-    factory :second do
+    factory :instruction do
       kbname { Faker::Name.title }
       type { :inst }
       description { Faker::Lorem.paragraph(paragraph_count = 3, supplemental = false) }

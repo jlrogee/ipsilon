@@ -3,15 +3,15 @@ require 'rails_helper'
 RSpec.describe Problem, :type => :model do
 
   it "has a valid factory" do
-    expect(FactoryGirl.build(:first_problem)).to be_valid
+    expect(FactoryGirl.build(:problem)).to be_valid
   end
 
   it 'initial state should be new' do
-    @problem = FactoryGirl.create :second_problem
+    @problem = FactoryGirl.build(:problem)
     expect(@problem.new?).to be true
   end
   before :all do
-    @problem = FactoryGirl.create :second_problem
+    @problem = FactoryGirl.build(:problem)
   end
   it '#switch_to_w changes state to work from new, returned, dispath, closed and done' do
     @problem.state = 'new'

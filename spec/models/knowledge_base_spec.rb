@@ -4,12 +4,15 @@ RSpec.describe KnowledgeBase, :type => :model do
 
   it { expect have_many :uploads }
 
-  it "has a valid factory" do
-    expect(FactoryGirl.build(:first)).to be_valid
-    expect(FactoryGirl.build(:second)).to be_valid
+  it "has a valid factory kb" do
+    expect(FactoryGirl.build(:kb)).to be_valid
   end
+  it "has a valid factory instruction" do
+    expect(FactoryGirl.build(:instruction)).to be_valid
+  end
+
   before :all do
-    @kb = FactoryGirl.create :first
+    @kb = FactoryGirl.build(:kb)
   end
 
   it "should set type" do
