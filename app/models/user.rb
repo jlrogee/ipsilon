@@ -14,4 +14,5 @@ class User < ActiveRecord::Base
   has_many :problems, :foreign_key => "last_update_user"
   has_many :problems, :foreign_key => "performer_user"
   has_many :solutions, :foreign_key => "create_user"
+  belongs_to :departament
 end
