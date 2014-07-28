@@ -19,6 +19,7 @@
 /config/database.yml
 /config/secrets.yml
 /public/system
+/public/uploads
 /spec/tmp
 **.orig
 rerun.txt
@@ -27,3 +28,4 @@ capybara-*.html
 /config/initializers/secret_token.rb
 .idea
 .DS_Store
+*~

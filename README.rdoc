@@ -1,5 +1,7 @@
 == Service Desk (light version)
 
+http://ipsilonrb.herokuapp.com
+
 Функционал проекта планируемый к реализации:
 
 Модуль Service Desk

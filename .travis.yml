@@ -1,3 +1,21 @@
 language: ruby
 rvm:
-  - 2.1.0
+- 2.1.2
+env:
+- DB=postgresql
+script:
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake
+before_script:
+- cp config/database.yml.sample config/database.yml
+- psql -c 'create database ipsilon_test' -U postgres
+- bundle exec rake db:migrate RAILS_ENV=test
+- bundle exec rake db:seed RAILS_ENV=test
+- bundle exec rspec spec
+deploy:
+  provider: heroku
+  api_key:
+    secure: FeTk5e2nDObyWc+ci64x3JpxNf7HFgxLlW1ZuZvDY4pQ0me9Y4VMtao0hkykwYVtQWkmzVvOQImsXdCRwvq728wCgEVeJaAF0ZDVJ47rSHLf126gUfIWkxCEZ8vB7rQ6l4CMC1lQa+rL9KPq3agTVRPpV5umPr1WMwfc+iQDUng=
+  app: ipsilonrb
+  on:
+    repo: jlrogee/ipsilon

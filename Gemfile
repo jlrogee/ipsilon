@@ -54,3 +54,9 @@ group :test do
   gem 'shoulda-matchers'
   gem 'webmock'
 end
+
+gem 'devise'
+#gem 'cancancan'
+gem 'enumerize'
+gem 'state_machine'
+gem 'carrierwave'
