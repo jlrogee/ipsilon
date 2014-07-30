@@ -16,6 +16,8 @@ deploy:
   provider: heroku
   api_key:
     secure: FeTk5e2nDObyWc+ci64x3JpxNf7HFgxLlW1ZuZvDY4pQ0me9Y4VMtao0hkykwYVtQWkmzVvOQImsXdCRwvq728wCgEVeJaAF0ZDVJ47rSHLf126gUfIWkxCEZ8vB7rQ6l4CMC1lQa+rL9KPq3agTVRPpV5umPr1WMwfc+iQDUng=
-  app: ipsilonrb
+    app:
+      master: ipsilonrb
+      dev: vicpo
   on:
     repo: jlrogee/ipsilon
