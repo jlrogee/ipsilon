@@ -1,52 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Ipsilon App" %></title>
-
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "vendor/modernizr" %>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Ipsilon" %>">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%# Modernizr is required for Zurb Foundation %>
+    <%= javascript_include_tag 'vendor/modernizr' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <%= javascript_include_tag "application" %>
-    <nav class="top-bar" data-topbar>
-      <ul class="title-area">
-        <li class="name">
-          <h1>
-            <a href="#">
-              Ipsilon App
-            </a>
-          </h1>
-        </li>
-      </ul>
-
-      <section class="top-bar-section">
-        <ul class="right">
-          <li class="has-dropdown">
-            <a href="#">Profile</a>
-            <ul class="dropdown">
-              <li><a href="#">Login</a></li>
-              <li><a href="#">Logout</a></li>
-            </ul>
-          </li>
-        </ul>
-      </section>
-    </nav>
-
-    <div class="row">
-      <div class="large-9 columns">
-        <h3></h3>
-
-        <%= yield %>
-
-
-        </div>
-      </div>
-    </div>
-
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
+    <main role="main">
+       <%= render 'layouts/messages' %>
+       <%= yield %>
+    </main>
     <footer class="row">
       <div class="large-12 columns">
         <hr/>
@@ -64,4 +35,3 @@
     </footer>
   </body>
 </html>
-
