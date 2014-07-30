@@ -5,6 +5,16 @@
     <div class="form-group">
       <%= f.label :email %>
       <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
+      <%= f.label :firstname, 'First name' %>
+      <%= f.text_field :firstname, class: 'form-control' %>
+      <%= f.label :lastname , 'Last name'%>
+      <%= f.text_field :lastname, class: 'form-control' %>
+      <%= f.label :phone , 'Phone number'%>
+      <%= f.text_field :phone, class: 'form-control' %>
+      <% if current_user.role.admin? %>
+          <%= f.label :role, "Role" %>
+          <%= f.select :role, User.role.options %>
+      <% end %>
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
@@ -30,8 +40,9 @@
     <%= f.submit 'Update', :class => 'button right tiny radius' %>
   <% end %>
 </div>
-<div class="authform">
-<h3>Cancel Account</h3>
-<p>Unhappy? We'll be sad to see you go.</p>
-<%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button right tiny radius' %>
-</div>
+<% if current_user.role.admin? %>
+
+    <div class="authform">
+    <%= button_to "Cancel account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button right tiny radius' %>
+    </div>
+<% end %>

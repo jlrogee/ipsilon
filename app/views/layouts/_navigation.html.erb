@@ -10,7 +10,13 @@
     </ul>
     <ul class="right">
       <% if user_signed_in? %>
-          <li><%= link_to current_user.email, edit_user_registration_path, method: :get %></li>
+          <li>
+            <% if current_user.firstname? %>
+                <%= link_to current_user.firstname + " " + current_user.lastname, edit_user_registration_path,
+                            method: :get %></li>
+            <% else %>
+                <%= link_to current_user.email, edit_user_registration_path, method: :get %></li>
+            <% end %>
           <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
       <% else %>
           <li><%= link_to "Sign in", new_user_session_path, method: :get %></li>
