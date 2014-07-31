@@ -22,3 +22,5 @@ deploy:
   on:
     repo: jlrogee/ipsilon
     branch: dev
+  run:
+  - "rake db:migrate"
