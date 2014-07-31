@@ -26,6 +26,9 @@
       <%= f.label :phone , 'Phone number'%>
       <%= f.text_field :phone, class: 'form-control' %>
     </div>
-     <%= f.submit 'Sign up', :class => 'button right tiny radius' %>
+    <div class="checkbox">
+      <%= f.check_box :agree %> <%= f.label :agree, 'I agree to the IpsilonApp Terms' %>
+    </div>
+    <%= f.submit 'Sign up', :class => 'button right tiny radius' %>
   <% end %>
 </div>
