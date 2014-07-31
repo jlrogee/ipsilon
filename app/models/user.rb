@@ -22,5 +22,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   accepts_nested_attributes_for :uploads
+
+  validates_acceptance_of :agree, :allow_nil => false, :accept => true, :on => :create
 end
 
