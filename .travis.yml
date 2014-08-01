@@ -21,6 +21,7 @@ deploy:
     dev: ipsilondev
   on:
     repo: jlrogee/ipsilon
+    branch: master
     branch: dev
   run:
   - "rake db:migrate"

@@ -1,0 +1,20 @@
+table width='100%'
+  thead
+    th width='25%'= Category.human_attribute_name(:name)
+    th width='65%'= Category.human_attribute_name(:description)
+    th width='10%' Actions
+  tbody
+    - @categories.each do |c|
+      tr
+        td= link_to c.catname, category_path(c)
+        td= c.description
+        td
+          - if can? :create, current_user
+            = link_to 'Edit', edit_category_path(c)
+            |  |
+            = link_to 'Delete', category_path(c), method: :delete, data: { confirm: "Are you sure?"}
+            |  |
+          - else
+            = link_to 'Show', category_path(c)
+  - if can? :create, current_user
+    = link_to 'New category', new_category_path, class: 'button tiny radius'
