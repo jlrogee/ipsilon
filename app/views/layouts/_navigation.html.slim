@@ -1,0 +1,18 @@
+nav.top-bar data-topbar="" 
+  ul.title-area
+    li.name= link_to 'Ipsilon App', root_path
+    li.toggle-topbar.menu-icon
+      a href="#"  Menu
+  .top-bar-section
+    ul
+      = render 'layouts/navigation_links'
+    ul.right
+      - if user_signed_in?
+        li
+          - if current_user.firstname?
+            = link_to current_user.firstname + " " + current_user.lastname, edit_user_registration_path, method: :get
+          - else
+            = link_to current_user.email, edit_user_registration_path, method: :get
+        li  = link_to "Sign out", destroy_user_session_path, method: :delete
+      - else
+        li= link_to "Sign in", new_user_session_path, method: :get
