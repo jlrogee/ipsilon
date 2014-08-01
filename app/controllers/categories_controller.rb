@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = categories.new(category_params)
+    @category = Category.new(category_params)
     if @category.save
       redirect_to categories_path
     else
@@ -18,11 +18,9 @@ class CategoriesController < ApplicationController
   end
 
   def show
-
   end
 
   def edit
-
   end
 
   def update

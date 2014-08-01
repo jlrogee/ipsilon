@@ -1,0 +1,5 @@
+.authform
+  = simple_form_for @category do |f|
+    = f.input :catname
+    = f.input :description
+    = f.submit "Save", :class => 'button tiny radius right'
