@@ -1,9 +1,9 @@
 doctype html
 html
   head
-    meta content="width=device-width, initial-scale=1.0" name="viewport" /
+    meta content="width=device-width, initial-scale=1.0" name="viewport"
     title= content_for?(:title) ? yield(:title) : "Ipsilon App"
-    meta content=(content_for?(:description) ? yield(:description) : "Ipsilon") name="description" /
+    meta content=(content_for?(:description) ? yield(:description) : "Ipsilon") name="description"
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'vendor/modernizr'
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
@@ -16,7 +16,7 @@ html
       = yield
     footer.row
       .large-12.columns
-        hr/
+        hr
         .row
           .large-6.columns
             p © Ipsilon

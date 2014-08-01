@@ -3,6 +3,7 @@ class Problem < ActiveRecord::Base
   belongs_to :performer_user, class_name: User
   belongs_to :last_update_user, class_name: User
   belongs_to :priority
+  belongs_to :category
   validates :description, presence: true
   has_many :uploads, :as => :attachable
   
