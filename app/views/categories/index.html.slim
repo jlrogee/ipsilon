@@ -1,0 +1,15 @@
+table.pricing-table
+  thead
+    th= Category.human_attribute_name(:name)
+    th= Category.human_attribute_name(:description)
+    th Actions
+  tbody
+    - @categories.each do |c|
+      tr
+        td= link_to c.catname, categories_path(c)
+        td= c.description
+        td
+          = link_to 'Edit', edit_category_path
+          |  |
+          = link_to 'Delete', category_path, method: :delete, data: { confirm: "Are you sure?"}
+  = link_to 'New category', new_category_path, class: 'button tiny radius'
