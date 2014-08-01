@@ -1,6 +1,8 @@
 require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe User, :type => :model do
+
   it { expect have_many :uploads }
   it { expect have_many :create_kb }
   it { expect have_many :update_kb }
