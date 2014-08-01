@@ -101,7 +101,6 @@ ActiveRecord::Schema.define(version: 20140801054311) do
   create_table "solutions", force: true do |t|
     t.integer  "problem_id"
     t.integer  "create_user_id"
-    t.integer  "state_id"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -109,7 +108,6 @@ ActiveRecord::Schema.define(version: 20140801054311) do
 
   add_index "solutions", ["create_user_id"], name: "index_solutions_on_create_user_id", using: :btree
   add_index "solutions", ["problem_id"], name: "index_solutions_on_problem_id", using: :btree
-  add_index "solutions", ["state_id"], name: "index_solutions_on_state_id", using: :btree
 
   create_table "uploads", force: true do |t|
     t.string  "avatar"
