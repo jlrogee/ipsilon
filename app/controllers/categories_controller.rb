@@ -5,8 +5,12 @@ class CategoriesController < ApplicationController
   before_action :find_by_id, only: [:destroy, :show, :update, :edit]
 
   def index
-    @categories = Category.all
-    @categories = Category.paginate(:page => params[:page])
+    if params[:search]
+      @categories = Category.search(params[:search])
+    else
+      @categories = Category.all
+    end
+    @categories = @categories.paginate(:page => params[:page])
   end
 
   def create
@@ -48,6 +52,6 @@ class CategoriesController < ApplicationController
     end
 
     def category_params
-      params.require(:category).permit(:catname, :description)
+      params.require(:category).permit(:catname, :description, :search)
     end
 end
