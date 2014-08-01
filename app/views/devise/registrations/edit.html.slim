@@ -12,9 +12,12 @@
       = f.text_field :lastname, class: 'form-control'
       = f.label :phone , 'Phone number'
       = f.text_field :phone, class: 'form-control'
-      - if current_user.role.admin?
+      - if current_user.role.admin? || current_user.role.dispatcher?
         = f.label :role, "Role"
         = f.select :role, User.role.options
+      - else
+        = f.label :role, "Role"
+        = f.text_field :role, :value => current_user.role, disabled: true
       - if devise_mapping.confirmable? && resource.pending_reconfirmation?
         div
           | Currently waiting confirmation for: #{resource.unconfirmed_email}
@@ -32,6 +35,6 @@
         = f.label :current_password
         = f.password_field :current_password, class: 'form-control'
     = f.submit 'Update', :class => 'button right tiny radius'
-- if current_user.role.admin?
+- if can? :destroy, current_user
   .authform
     = button_to "Cancel account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button right tiny radius'

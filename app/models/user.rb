@@ -23,6 +23,6 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :uploads
 
-  validates_acceptance_of :agree, :allow_nil => false, :accept => true, :on => :create
+  validates_acceptance_of :agree, :on => :create
 end
 
