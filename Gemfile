@@ -56,9 +56,11 @@ group :test do
 end
 
 gem 'devise'
-#gem 'cancancan'
+gem 'cancancan'
 gem 'enumerize'
 gem 'state_machine'
 gem 'carrierwave'
 gem 'simple_form'
 gem 'foundation-rails'
+gem 'will_paginate'
+gem 'slim'
