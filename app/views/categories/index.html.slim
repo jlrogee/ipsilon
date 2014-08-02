@@ -1,12 +1,4 @@
 .panel
-
-  = form_tag(categories_path, :method => "get", id: "search-form") do
-    .row.collapse
-      .small-10.columns
-        = text_field_tag :search, params[:search], placeholder: "Search Category", :class => "large-4 columns"
-      .small-2.columns
-        = submit_tag "Search", :name => nil, class: 'button postfix'
-
   table width='100%'
     thead
       th width='25%'= Category.human_attribute_name(:name)
