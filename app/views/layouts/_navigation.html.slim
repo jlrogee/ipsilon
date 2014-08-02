@@ -7,16 +7,15 @@ nav.top-bar data-topbar=""
     ul
       = render 'layouts/navigation_links'
     ul.right
+      li.has-form
+        = form_tag('/search/' + controller_name.classify, :method => "get", id: "search-form") do
+          .row.collapse
+            .large-8.small-9.columns
+              = text_field_tag :search, params[:search], placeholder: "Search " + controller_name.classify
+
+            .large-4.small-3.columns
+              = submit_tag "Search", :name => nil, class: "button alert expand"
       - if user_signed_in?
-        li.has-form
-          = form_tag('/search/' + controller_name.classify, :method => "get", id: "search-form") do
-            .row.collapse
-              .large-8.small-9.columns
-                = text_field_tag :search, params[:search], placeholder: "Search " + controller_name.classify
-
-              .large-4.small-3.columns
-                = submit_tag "Search", :name => nil, class: "button alert expand"
-
         li
           - if current_user.firstname?
             = link_to current_user.firstname + " " + current_user.lastname, edit_user_registration_path, method: :get
