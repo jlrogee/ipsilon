@@ -24,5 +24,11 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :uploads
 
   validates_acceptance_of :agree, :on => :create
+
+  self.per_page = 10
+
+  def self.search(query)
+    where("email like ? OR firstname like ? OR lastname like ? OR phone like ?", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")
+  end
 end
 

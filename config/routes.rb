@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :categories
+  #resources :search, only: :index
+  get 'search/:name' => 'search#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
