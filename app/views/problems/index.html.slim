@@ -1,19 +1,24 @@
-table.table
-  thead
-    th Description
-    th State
-    th Priority
-    th Category
-    th Actions
-  tbody
-    - @problems.each do |p|
-      tr
-        td= link_to p.description, problem_path(p)
-        td= p.state
-        td= p.priority
-        td= p.category_id
-        td
-          = link_to 'Edit', edit_problem_path(p)
-          | |
-          = link_to 'Delete', problem_path(p), method: :delete, data: {confirm: 'sure?'}
-=link_to 'New problem', new_problem_path, class: 'button'
+.panel
+  table width='100%'
+    thead
+      th Description
+      th State
+      th Priority
+      th Category
+      th Actions
+    tbody
+      - @problems.each do |p|
+        tr
+          td= link_to p.description, problem_path(p)
+          td= p.state
+          td= p.priority
+          td= p.category
+          td
+            - if can? :create, current_user
+              = link_to 'Edit', edit_problem_path(p)
+              |  |
+              = link_to 'Delete', problem_path(p), method: :delete, data: {confirm: 'sure?'}
+            - else
+              = link_to 'Show', problems_path(p)
+- if can? :create, current_user
+  =link_to 'New problem', new_problem_path, class: 'button'

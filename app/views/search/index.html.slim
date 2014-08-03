@@ -1,0 +1,17 @@
+.panel
+  table width='100%'
+    thead
+      th width='25%'= Category.human_attribute_name(:firstname)
+      th width='25%'= Category.human_attribute_name(:lastname)
+      th width='25%'= Category.human_attribute_name(:email)
+      th width='25%'= Category.human_attribute_name(:phone)
+    tbody
+      - @search.each do |c|
+        tr
+          td= c.firstname
+          td= c.lastname
+          td= link_to c.email, edit_user_registration_path(c)
+          td= c.phone
+
+
+  = foundation_paginate @categories

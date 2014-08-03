@@ -1,5 +1,14 @@
-h1 Problem
-p= @problem.description
-p= @problem.category_id
-p= @problem.state
-=link_to 'All problems', problems_path
+.panel
+  table width='100%'
+    tbody
+      tr
+        td= Problem.human_attribute_name(:description)
+        td= @problem.description
+      tr
+        td= Problem.human_attribute_name(:category)
+        td= @problem.category
+      tr
+        td= Problem.human_attribute_name(:state)
+        td= @problem.state
+
+= link_to "All problems", problems_path, class: 'button tiny radius'

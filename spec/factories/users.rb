@@ -6,6 +6,6 @@ FactoryGirl.define do
     password { Faker::Internet.password }
     firstname { Faker::Name.first_name }
     lastname  { Faker::Name.last_name }
-    agree { true }
+    agree { "1" }
   end
 end

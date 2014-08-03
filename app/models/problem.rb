@@ -30,4 +30,8 @@ class Problem < ActiveRecord::Base
     end
   end
 
+  def self.search(query)
+    where("description like ? ", "%#{query}%")
+  end
+
 end

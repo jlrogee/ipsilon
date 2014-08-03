@@ -1,10 +1,11 @@
 class ProblemsController < ApplicationController
+  before_action :find_by_id, only: [:destroy, :show, :update, :edit]
+
   def index
     @problems = Problem.includes(:create_user)
   end
 
   def show
-    @problem = Problem.find(params[:id])
   end
 
   def new
@@ -12,7 +13,7 @@ class ProblemsController < ApplicationController
   end
 
   def create
-    @problem = current_user.create_pb.new(params.require(:problem).permit(:description))
+    @problem = current_user.create_pb.new(problem_params)
     if @problem.save
       redirect_to problems_path
     else
@@ -21,12 +22,10 @@ class ProblemsController < ApplicationController
   end
 
   def edit
-    @problem = Problem.find(params[:id])
   end
 
   def update
-    @problem = Problem.find(params[:id])
-    if @problem.update(params.require(:problem).permit(:description))
+    if @problem.update(problem_params)
       redirect_to problems_path
     else
       render :edit
@@ -34,9 +33,16 @@ class ProblemsController < ApplicationController
   end
 
   def destroy
-    @problem = Problem.find(params[:id])
     @problem.destroy
     redirect_to problems_path
+  end
+
+  def problem_params
+    params.require(:problem).permit(:description, :category_id,:state)
+  end
+
+  def find_by_id
+    @problem = Problem.find(params[:id])
   end
 
 end
