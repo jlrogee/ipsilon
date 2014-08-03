@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :categories
-  #resources :search, only: :index
+
+  get 'knowledge_bases/index/:name' => 'knowledge_bases#index'
+  resources :knowledge_bases
+
   get 'search/:name' => 'search#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

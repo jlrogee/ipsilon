@@ -1,0 +1,17 @@
+center
+  h3 Search Results
+.panel
+  table width="100%"
+    thead
+      th width="15%"= KnowledgeBase.human_attribute_name(:type)
+      th width="25%"= KnowledgeBase.human_attribute_name(:name)
+      th width="60%"= KnowledgeBase.human_attribute_name(:description)
+    tbody
+      - @search.each do |s|
+        tr
+          td= link_to s.type.kb? ? "KB" : "Instructions",
+                      knowledge_bases_path + "/index/" + (s.type.kb? ? "kb" : "instructions")
+          td= link_to s.kbname, knowledge_base_path(s)
+          td= s.description
+
+  = foundation_paginate @knowledge_bases
