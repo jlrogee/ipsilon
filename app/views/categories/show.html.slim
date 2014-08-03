@@ -2,10 +2,7 @@
   table width='100%'
     tbody
       tr
-        td= Category.human_attribute_name(:name)
         td= @category.catname
-      tr
-        td= Category.human_attribute_name(:description)
         td= @category.description
 
 = link_to "List categories", categories_path, class: 'button tiny radius'

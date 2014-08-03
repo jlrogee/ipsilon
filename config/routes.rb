@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'knowledge_bases/index/:name' => 'knowledge_bases#index'
   resources :knowledge_bases
 
+  resources :priorities
+
   get 'search/:name' => 'search#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
