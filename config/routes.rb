@@ -6,13 +6,14 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
-
+  resources :problems
   resources :categories
 
   get 'knowledge_bases/index/:name' => 'knowledge_bases#index'
   resources :knowledge_bases
 
   get 'search/:name' => 'search#index'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
