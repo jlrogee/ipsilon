@@ -33,7 +33,7 @@ RSpec.describe ProblemsController, :type => :controller do
     describe "Get #show" do
       it "assigns the requested problem to subject" do
         get :show, id: subject
-        expect(assigns(:problem)).to eq([subject])
+        expect(assigns(:problem)).to eq(subject)
       end
 
       it "renders the :show view" do
@@ -86,7 +86,7 @@ RSpec.describe ProblemsController, :type => :controller do
         it "updates object" do
           expect{
             patch :update, id: subject, problem: {description:'new description'}
-          }.to change(subject.reload.description).to('new description')
+          }.to change{subject.reload.description}.to('new description')
         end
 
         it "redirects to index path" do
