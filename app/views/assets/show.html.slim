@@ -1,0 +1,20 @@
+.panel
+  table width='100%'
+    tbody
+      tr
+        td= Asset.human_attribute_name(:name)
+        td= @asset.name
+      tr
+        td= Asset.human_attribute_name(:type)
+        td= @asset.description
+      tr
+        td= Asset.human_attribute_name(:organization)
+        td= @asset.organization
+      tr
+        td= Asset.human_attribute_name(:account_number)
+        td= @asset.account_number
+      tr
+        td= Asset.human_attribute_name(:user)
+        td= @asset.user
+
+= link_to "List assets", assets_path, class: 'button tiny radius'
