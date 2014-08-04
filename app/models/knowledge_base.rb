@@ -21,9 +21,7 @@ class KnowledgeBase < ActiveRecord::Base
     where("type = 2")
   end
 
-  def self.search(query)
-    where("kbname like ? OR description like ? OR instruction like ?", "%#{query}%", "%#{query}%", "%#{query}%")
-  end
+  scope :search, -> (query) { where("kbname like ? OR description like ? OR instruction like ?", "%#{query}%", "%#{query}%", "%#{query}%")}
 
   self.inheritance_column = :_type_disabled
   self.per_page = 10

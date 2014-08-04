@@ -30,9 +30,7 @@ class Problem < ActiveRecord::Base
     end
   end
 
-  def self.search(query)
-    where("description like ? ", "%#{query}%")
-  end
+  scope :search, -> (query) {where("description like ? ", "%#{query}%")}
 
   self.per_page = 10
 end

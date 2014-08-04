@@ -9,7 +9,6 @@ class Asset < ActiveRecord::Base
 
   self.per_page = 10
 
-  def self.search(query)
-    where("name like ? OR account_number like ?", "%#{query}%", "%#{query}%")
-  end
+  scope :search, -> (query) { where("name like ? OR account_number like ?", "%#{query}%", "%#{query}%") }
+
 end

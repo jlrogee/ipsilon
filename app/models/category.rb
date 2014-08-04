@@ -4,9 +4,7 @@ class Category < ActiveRecord::Base
 
   self.per_page = 10
 
-  def self.search(query)
-    where("catname like ? OR description like ?", "%#{query}%", "%#{query}%")
-  end
+  scope :search, -> (query) {where("catname like ? OR description like ?", "%#{query}%", "%#{query}%")}
 
   def to_s
     "#{catname}"

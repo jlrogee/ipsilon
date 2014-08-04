@@ -10,7 +10,7 @@ center
       - @search.each do |s|
         tr
           td= link_to s.type.kb? ? "KB" : "Instructions",
-                       (s.type.kb? ? kbase_path : instr_path)
+                       (s.type.kb? ? kbase_path : inst_path)
           td= link_to s.kbname, knowledge_base_path(s)
           td= s.description
 
