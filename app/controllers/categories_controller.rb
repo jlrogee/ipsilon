@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  include ApplicationHelper
+
   load_and_authorize_resource param_method: :category_params
 
   before_action :find_by_id, only: [:destroy, :show, :update, :edit]

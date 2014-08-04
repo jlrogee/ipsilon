@@ -8,7 +8,23 @@ class KnowledgeBase < ActiveRecord::Base
   accepts_nested_attributes_for :uploads
 
   validates_presence_of :kbname
+  validates_uniqueness_of :kbname
 
   extend Enumerize
   enumerize :type, in: { inst: 1, kb: 2 }
+
+  def self.instr
+    where("type = 1")
+  end
+
+  def self.kb
+    where("type = 2")
+  end
+
+  def self.search(query)
+    where("kbname like ? OR description like ? OR instruction like ?", "%#{query}%", "%#{query}%", "%#{query}%")
+  end
+
+  self.inheritance_column = :_type_disabled
+  self.per_page = 10
 end

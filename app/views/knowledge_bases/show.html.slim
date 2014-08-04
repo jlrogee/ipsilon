@@ -1,0 +1,11 @@
+.panel
+  h3.left= @knowledge_base.kbname
+  table width="100%"
+    tr
+      td= @knowledge_base.description
+    tr
+      td= @knowledge_base.instruction.gsub!( /\n/, '<br />').html_safe
+
+= link_to @knowledge_base.type.kb? ? "List knowledge base" : "List instructions",
+          knowledge_bases_path + "/index/" + (@knowledge_base.type.kb? ? "kb" : "instructions"),
+          class: 'button tiny radius'

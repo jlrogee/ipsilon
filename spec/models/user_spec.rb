@@ -14,7 +14,7 @@ RSpec.describe User, :type => :model do
     expect(FactoryGirl.build(:user)).to be_valid
   end
 
-  let(:user) { FactoryGirl.create :user, role: :admin }
+  let(:user) { FactoryGirl.create :user, role: :user }
   let(:user) { FactoryGirl.create :user, role: :spec }
   let(:user) { FactoryGirl.create :user, role: :dispatcher }
 

@@ -5,12 +5,23 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
-
+  root 'problems#index'
+  resources :problems, except: [:destroy, :edit] do
+    resources :solutions, only: [:index, :new, :create]
+  end
   resources :categories
-  resources :assets
+
   #resources :search, only: :index
+
+  get 'knowledge_bases/index/:name' => 'knowledge_bases#index'
+  resources :knowledge_bases
+
+  resources :priorities, except: :show
+
   get 'search/:name' => 'search#index'
+
+  resources :departaments
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

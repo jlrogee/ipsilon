@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe CategoriesController, :type => :controller do
+RSpec.describe KnowledgeBasesController, :type => :controller do
+
   context "when user not logged in" do
     describe "Get #index" do
       it " redirect to login page" do
@@ -11,9 +12,9 @@ RSpec.describe CategoriesController, :type => :controller do
     end
   end
 
-  context "when user logged in" do
+  context "when user logged in kb" do
     let(:user) { FactoryGirl.create(:user)}
-    subject { FactoryGirl.create(:category)}
+    subject { FactoryGirl.create(:kb)}
 
     before do
       sign_in user
@@ -22,19 +23,19 @@ RSpec.describe CategoriesController, :type => :controller do
     describe "Get #index" do
       it "render index view" do
         get :index
-        expect(response).to render_template :index
+        expect(response).to render_template :kb
       end
 
-      it "assigns the request category to catname" do
+      it "assigns the request kbname to kb" do
         get :index
-        expect(assigns(:categories)).to eq([subject])
+        expect(assigns(:knowledge_bases)).to eq([subject])
       end
     end
 
     describe "Get #show" do
-      it "assigns the requested category to subject" do
+      it "assigns the requested knowledge_bases to subject" do
         get :show, id: subject
-        expect(assigns(:category)).to eq(subject)
+        expect(assigns(:knowledge_base)).to eq(subject)
       end
 
       it "renders the :show view" do
@@ -44,9 +45,9 @@ RSpec.describe CategoriesController, :type => :controller do
     end
 
     describe "Get #new" do
-      it "assigns the requested category to new" do
+      it "assigns the requested knowledge_bases to new" do
         get :new
-        expect(assigns(:category)).to be_new_record
+        expect(assigns(:knowledge_base)).to be_new_record
       end
 
       it "renders the :new view" do
@@ -59,21 +60,21 @@ RSpec.describe CategoriesController, :type => :controller do
       context "with valid attributes" do
         it "creates new object" do
           expect{
-            post :create, category: FactoryGirl.attributes_for(:category)
-          }.to change(Category, :count).by(1)
+            post :create, knowledge_base: FactoryGirl.attributes_for(:kb)
+          }.to change(KnowledgeBase, :count).by(1)
         end
 
         it "redirects to index path" do
-          post :create, category: FactoryGirl.attributes_for(:category)
-          expect(response).to redirect_to categories_path
+          post :create, knowledge_base: FactoryGirl.attributes_for(:kb)
+          expect(response).to redirect_to knowledge_bases_path + "/index/kb"
         end
       end
     end
 
     describe "Get #edit" do
-      it "assigns the requested category to subject" do
+      it "assigns the requested knowledge_bases to subject" do
         get :edit, id: subject
-        expect(assigns(:category)).to eq(subject)
+        expect(assigns(:knowledge_base)).to eq(subject)
       end
 
       it "renders the :edit view" do
@@ -86,30 +87,31 @@ RSpec.describe CategoriesController, :type => :controller do
       context "with valid attributes" do
         it "updates object" do
           expect{
-            patch :update, id: subject, category: {description:'new description'}
+            patch :update, id: subject, knowledge_base: {description:'new description'}
           }.to change{subject.reload.description}.to('new description')
         end
 
         it "redirects to index path" do
-          patch :update, id: subject, category: {description:'new description'}
-          expect(response).to redirect_to categories_path
+          patch :update, id: subject, knowledge_base: {description:'new description'}
+          expect(response).to redirect_to knowledge_bases_path + "/index/kb"
         end
       end
     end
 
     describe "DELETE #destroy" do
-      before (:each) {@category = FactoryGirl.create(:category)}
-      it "deletes the category" do
+      before (:each) {@knowledge_base = FactoryGirl.create(:kb)}
+      it "deletes the knowledge_bases" do
         expect{
-          patch :destroy, id: @category
-        }.to change(Category, :count).by(-1)
+          patch :destroy, id: @knowledge_base
+        }.to change(KnowledgeBase, :count).by(-1)
       end
 
-      it "redirects to categories#index" do
-        patch :destroy, id: @category
-        expect(response).to redirect_to categories_path
+      it "redirects to knowledge_bases#index" do
+        patch :destroy, id: @knowledge_base
+        expect(response).to redirect_to knowledge_bases_path + "/index/kb"
       end
     end
-
+    
   end
+
 end

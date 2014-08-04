@@ -11,9 +11,9 @@
           td= c.description
           td
             - if can? :create, current_user
-              = link_to 'Edit', edit_category_path(c)
+              = link_to 'Edit ', edit_category_path(c)
               |  |
-              = link_to 'Delete', category_path(c), method: :delete, data: { confirm: "Are you sure?"}
+              = link_to ' Delete', category_path(c), method: :delete, data: { confirm: "Are you sure?"}
 
             - else
               = link_to 'Show', category_path(c)

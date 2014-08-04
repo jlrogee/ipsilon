@@ -1,0 +1,13 @@
+.panel
+  table width='100%'
+    tbody
+      tr
+        td= @departament.depname
+        td= @departament.organization
+        td= @departament.adress
+        td= @departament.city
+        td= @departament.country
+        td= @departament.zipcode
+        td= @departament.phone
+
+= link_to "List cdepartaments", departaments_path, class: 'button tiny radius'

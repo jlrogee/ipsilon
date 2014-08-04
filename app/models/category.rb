@@ -7,4 +7,8 @@ class Category < ActiveRecord::Base
   def self.search(query)
     where("catname like ? OR description like ?", "%#{query}%", "%#{query}%")
   end
+
+  def to_s
+    "#{catname}"
+  end
 end

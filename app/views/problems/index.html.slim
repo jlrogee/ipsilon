@@ -1,0 +1,26 @@
+.panel
+  table width='100%'
+    thead
+      th Description
+      th State
+      th Priority
+      th Day to close
+      th Category
+      th Created
+    tbody
+      - @problems.each do |p|
+        tr
+          td= link_to p.description, problem_path(p)
+          td= p.state
+          td= p.priority
+          td= Date.today + p.priority.days_to_close
+          td= p.category
+          td
+            - if p.create_user.firstname?
+              = p.create_user.firstname + " " + p.create_user.lastname
+            - else
+              = p.create_user.email
+
+  = foundation_paginate @knowledge_bases
+
+  =link_to 'New problem', new_problem_path, class: 'button tiny radius'
