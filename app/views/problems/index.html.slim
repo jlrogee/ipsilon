@@ -17,9 +17,8 @@
           td= p.category
           td
             - if p.create_user.firstname?
-              = p.create_user.firstname + " " + p.create_user.lastname
+              = p.create_user.fio
             - else
-
               = p.create_user.email
 
   = foundation_paginate @knowledge_bases

@@ -19,7 +19,7 @@ nav.top-bar data-topbar=""
       - if user_signed_in?
         li
           - if current_user.firstname?
-            = link_to current_user.firstname + " " + current_user.lastname, edit_user_registration_path, method: :get
+            = link_to current_user.fio, edit_user_registration_path, method: :get
           - else
             = link_to current_user.email, edit_user_registration_path, method: :get
         li  = link_to "Sign out", destroy_user_session_path, method: :delete

@@ -6,15 +6,12 @@ class KnowledgeBasesController < ApplicationController
 
   def index
     if params[:name] == "instructions"
-      @knowledge_bases = KnowledgeBase.instr
-      @knowledge_bases = @knowledge_bases.paginate(:page => params[:page])
+      @knowledge_bases = KnowledgeBase.instr.paginate(:page => params[:page])
       render 'instruction'
     else
-      @knowledge_bases = KnowledgeBase.kb
-      @knowledge_bases = @knowledge_bases.paginate(:page => params[:page])
+      @knowledge_bases = KnowledgeBase.kb.paginate(:page => params[:page])
       render 'kb'
     end
-
 
   end
 
@@ -22,7 +19,7 @@ class KnowledgeBasesController < ApplicationController
     @knowledge_base = KnowledgeBase.new(knowledge_base_params)
     @knowledge_base.create_user_id = current_user.id
     if @knowledge_base.save
-      redirect_to (@knowledge_base.type.kb? ? kb_patch : inst_path)
+      redirect_to (@knowledge_base.type.kb? ? kbase_path : inst_path)
     else
       render :new
     end
@@ -37,7 +34,7 @@ class KnowledgeBasesController < ApplicationController
   def update
     @knowledge_base.update_user_id = current_user.id
     if @knowledge_base.update(knowledge_base_params)
-      redirect_to (@knowledge_base.type.kb? ? kb_patch : inst_path)
+      redirect_to (@knowledge_base.type.kb? ? kbase_path : inst_path)
     else
       render :edit
     end
@@ -45,7 +42,7 @@ class KnowledgeBasesController < ApplicationController
 
   def destroy
     @knowledge_base.destroy
-    redirect_to kb_path
+    redirect_to kbase_path
   end
 
   def new

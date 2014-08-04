@@ -2,6 +2,8 @@ class Departament < ActiveRecord::Base
   belongs_to :organization
   has_many :users
 
+  attr_accessor :addr
+
   self.per_page = 10
 
   def self.search(query)
@@ -12,4 +14,9 @@ class Departament < ActiveRecord::Base
   def to_s
     "#{depname} #{organization}"
   end
+
+  def addr
+    "#{adress} #{city} #{country}"
+  end
+
 end

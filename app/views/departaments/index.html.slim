@@ -13,7 +13,7 @@
           td= link_to d.depname, departament_path(d)
           td= d.organization
           td= d.phone
-          td= d.adress + " " + d.city + " " + d.country
+          td= d.addr
           - if can? :create, current_user
             td
               = link_to 'Edit ', edit_departament_path(d)
