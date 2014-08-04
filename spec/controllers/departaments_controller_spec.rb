@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CategoriesController, :type => :controller do
+RSpec.describe DepartamentsController, :type => :controller do
   context "when user not logged in" do
     describe "Get #index" do
       it " redirect to login page" do
@@ -13,7 +13,7 @@ RSpec.describe CategoriesController, :type => :controller do
 
   context "when user logged in" do
     let(:user) { FactoryGirl.create(:user)}
-    subject { FactoryGirl.create(:category)}
+    subject { FactoryGirl.create(:departament)}
 
     before do
       sign_in user
@@ -25,16 +25,16 @@ RSpec.describe CategoriesController, :type => :controller do
         expect(response).to render_template :index
       end
 
-      it "assigns the request category to catname" do
+      it "assigns the request departament to depname" do
         get :index
-        expect(assigns(:categories)).to eq([subject])
+        expect(assigns(:departaments)).to eq([subject])
       end
     end
 
     describe "Get #show" do
-      it "assigns the requested category to subject" do
+      it "assigns the requested departament to subject" do
         get :show, id: subject
-        expect(assigns(:category)).to eq(subject)
+        expect(assigns(:departament)).to eq(subject)
       end
 
       it "renders the :show view" do
@@ -44,9 +44,9 @@ RSpec.describe CategoriesController, :type => :controller do
     end
 
     describe "Get #new" do
-      it "assigns the requested category to new" do
+      it "assigns the requested departament to new" do
         get :new
-        expect(assigns(:category)).to be_new_record
+        expect(assigns(:departament)).to be_new_record
       end
 
       it "renders the :new view" do
@@ -59,21 +59,21 @@ RSpec.describe CategoriesController, :type => :controller do
       context "with valid attributes" do
         it "creates new object" do
           expect{
-            post :create, category: FactoryGirl.attributes_for(:category)
-          }.to change(Category, :count).by(1)
+            post :create, departament: FactoryGirl.attributes_for(:departament)
+          }.to change(Departament, :count).by(1)
         end
 
         it "redirects to index path" do
-          post :create, category: FactoryGirl.attributes_for(:category)
-          expect(response).to redirect_to categories_path
+          post :create, departament: FactoryGirl.attributes_for(:departament)
+          expect(response).to redirect_to departaments_path
         end
       end
     end
 
     describe "Get #edit" do
-      it "assigns the requested category to subject" do
+      it "assigns the requested departament to subject" do
         get :edit, id: subject
-        expect(assigns(:category)).to eq(subject)
+        expect(assigns(:departament)).to eq(subject)
       end
 
       it "renders the :edit view" do
@@ -86,28 +86,28 @@ RSpec.describe CategoriesController, :type => :controller do
       context "with valid attributes" do
         it "updates object" do
           expect{
-            patch :update, id: subject, category: {description:'new description'}
-          }.to change{subject.reload.description}.to('new description')
+            patch :update, id: subject, departament: {depname:'new departament'}
+          }.to change{subject.reload.depname}.to('new departament')
         end
 
         it "redirects to index path" do
-          patch :update, id: subject, category: {description:'new description'}
-          expect(response).to redirect_to categories_path
+          patch :update, id: subject, departament: {depname:'new departament'}
+          expect(response).to redirect_to departaments_path
         end
       end
     end
 
     describe "DELETE #destroy" do
-      before (:each) {@category = FactoryGirl.create(:category)}
-      it "deletes the category" do
+      before (:each) {@departament = FactoryGirl.create(:departament)}
+      it "deletes the departament" do
         expect{
-          patch :destroy, id: @category
-        }.to change(Category, :count).by(-1)
+          patch :destroy, id: @departament
+        }.to change(Departament, :count).by(-1)
       end
 
-      it "redirects to categories#index" do
-        patch :destroy, id: @category
-        expect(response).to redirect_to categories_path
+      it "redirects to departaments#index" do
+        patch :destroy, id: @departament
+        expect(response).to redirect_to departaments_path
       end
     end
 

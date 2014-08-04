@@ -1,4 +1,4 @@
-.authform
+.newform
   = simple_form_for @problem do |f|
     p Problem
     = f.label :description
@@ -7,5 +7,5 @@
       = f.label :state
       = f.collection_select :state_event, @problem.state_transitions, :human_to_name, :human_to_name, :include_blank => @problem.human_state_name
     = f.association :category
-    = f.input :priority
-    = f.submit
+    = f.association :priority
+    = f.submit "Save", :class => 'button tiny radius'

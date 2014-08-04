@@ -11,6 +11,7 @@ class Ability
       can :read,  :all
       can :update, User, :user_id => user.id
     end
+    can :manage, Problem
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

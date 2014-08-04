@@ -26,4 +26,5 @@ class KnowledgeBase < ActiveRecord::Base
   end
 
   self.inheritance_column = :_type_disabled
+  self.per_page = 10
 end
