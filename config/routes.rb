@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   end
   resources :categories
 
+  #resources :search, only: :index
+
   get 'knowledge_bases/index/:name' => 'knowledge_bases#index'
   resources :knowledge_bases
 
