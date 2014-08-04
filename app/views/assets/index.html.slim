@@ -20,7 +20,7 @@
             - if can? :create, current_user
               = link_to 'Edit', edit_asset_path(a)
               |  |
-              = link_to 'Delete', asset_path(c), method: :delete, data: { confirm: "Are you sure?"}
+              = link_to ' Delete', asset_path(c), method: :delete, data: { confirm: "Are you sure?"}
 
             - else
               = link_to 'Show', asset_path(c)
