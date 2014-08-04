@@ -43,11 +43,11 @@ class PrioritiesController < ApplicationController
 
   private
 
-  def find_by_id
-    @priority = Priority.find(params[:id])
-  end
+    def find_by_id
+      @priority = Priority.find(params[:id])
+    end
 
-  def priority_params
-    params.require(:priority).permit(:prname, :description, :search)
-  end
+    def priority_params
+      params.require(:priority).permit(:prname, :days_to_close)
+    end
 end

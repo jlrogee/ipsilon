@@ -1,0 +1,27 @@
+.panel
+  table width='100%'
+    thead
+      th= Departament.human_attribute_name(:Departement_name)
+      th= Departament.human_attribute_name(:Organization)
+      th= Departament.human_attribute_name(:Phone)
+      th= Departament.human_attribute_name(:Address)
+      - if can? :create, current_user
+        th Actions
+    tbody
+      - @departaments.each do |d|
+        tr
+          td= link_to d.depname, departament_path(d)
+          td= d.organization
+          td= d.phone
+          td= d.adress + " " + d.city + " " + d.country
+          - if can? :create, current_user
+            td
+              = link_to 'Edit ', edit_departament_path(d)
+              |  |
+              = link_to ' Delete', departament_path(d), method: :delete, data: { confirm: "Are you sure?"}
+
+  = foundation_paginate @departaments
+
+- if can? :create, current_user
+  = link_to 'New departament', new_departament_path, class: 'button tiny radius'
+
