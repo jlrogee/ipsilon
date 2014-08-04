@@ -1,9 +1,9 @@
 class AssetsController < ApplicationController
-  include ApplicationHelper
+
   load_and_authorize_resource param_method: :asset_params
 
   before_action :find_by_id, only: [:destroy, :show, :update, :edit]
-  
+
   def index
     if params[:search]
       @assets = Asset.search(params[:search])
@@ -11,10 +11,6 @@ class AssetsController < ApplicationController
       @assets = Asset.all
     end
     @assets = @assets.paginate(:page => params[:page])
-  end
-
-  def new
-    @asset = Asset.new
   end
 
   def create
@@ -26,35 +22,36 @@ class AssetsController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def edit
   end
 
   def update
-      if @asset.update(asset_params)
-        redirect_to assets_path
-      else
-        render :edit
-      end
+    if @asset.update(asset_params)
+      redirect_to assets_path
+    else
+      render :edit
+    end
+  end
+
+  def show
   end
 
   def destroy
-
     @asset.destroy
-    redirect to assets_path
-
+    redirect_to assets_path
   end
 
-    private
+  def new
+    @asset = Asset.new
+  end
 
-     def find_by_id
-       @asset = Assets.find(params[:id])
-     end
+  private
 
-     def asset_params
-       params.require(:asset).permit(:name, :type, :organization, :account_number, :user, :search)
-     end
-
+    def find_by_id
+      @asset = Asset.find(params[:id])
+    end
+  
+    def asset_params
+      params.require(:asset).permit(:name, :type, :organization_id, :account_number, :user_id, :search)
+    end
 end

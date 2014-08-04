@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get 'search/:name' => 'search#index'
 
   resources :departaments
-
+  resources :assets
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -47,11 +47,11 @@ class DepartamentsController < ApplicationController
 
   private
 
-  def find_by_id
-    @departament = Departament.find(params[:id])
-  end
+    def find_by_id
+      @departament = Departament.find(params[:id])
+    end
 
-  def departament_params
-    params.require(:departament).permit(:depname, :organization_id, :search, :adress, :phone, :city, :zipcode, :country)
-  end
+    def departament_params
+      params.require(:departament).permit(:depname, :organization_id, :search, :adress, :phone, :city, :zipcode, :country)
+    end
 end

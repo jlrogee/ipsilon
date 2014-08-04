@@ -6,4 +6,6 @@ class Asset < ActiveRecord::Base
 
   extend Enumerize
   enumerize :type, in: { hardware: 1, software: 2 }
+
+  self.per_page = 10
 end

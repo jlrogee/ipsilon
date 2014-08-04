@@ -19,37 +19,25 @@ RSpec.describe AssetsController, :type => :controller do
       sign_in user
     end
 
-    describe "GET #index" do
-      it "render :index view" do
+    describe "Get #index" do
+      it "render index view" do
         get :index
         expect(response).to render_template :index
       end
 
-      it "assigns the request asset to name" do
+      it "assigns the request asset to prname" do
         get :index
         expect(assigns(:assets)).to eq([subject])
       end
     end
 
-    describe "GET #show" do
-      it "assigns the requested asset to subject" do
-        get :show, id: subject
-        expect(assigns(:asset)).to eq(subject)
-      end
-
-      it "render the show view" do
-        get :show, id: subject
-        expect(response).to render_template :show
-      end
-    end
-
-    describe "GET #new" do
-      it "assigns the requested asset to new asset" do
+    describe "Get #new" do
+      it "assigns the requested asset to new" do
         get :new
         expect(assigns(:asset)).to be_new_record
       end
 
-      it "render the :new view" do
+      it "renders the :new view" do
         get :new
         expect(response).to render_template :new
       end
@@ -57,17 +45,20 @@ RSpec.describe AssetsController, :type => :controller do
 
     describe "POST #create" do
       context "with valid attributes" do
-        it "create new asset" do
-          expect{post :create, asset: FactoryGirl.attributes_for(:asset)}.to change(Asset, :count) by(1)
+        it "creates new object" do
+          expect{
+            post :create, asset: FactoryGirl.attributes_for(:asset)
+          }.to change(Asset, :count).by(1)
         end
 
-      it "rendirect to index path" do
-        post :create, asset: FactoryGirl.attributes_for(:project)
-        expect(response).to redirect_to assets_path
+        it "redirects to index path" do
+          post :create, asset: FactoryGirl.attributes_for(:asset)
+          expect(response).to redirect_to assets_path
+        end
       end
     end
 
-    describe "GET #edit	" do
+    describe "Get #edit" do
       it "assigns the requested asset to subject" do
         get :edit, id: subject
         expect(assigns(:asset)).to eq(subject)
@@ -82,29 +73,32 @@ RSpec.describe AssetsController, :type => :controller do
     describe "PATCH #update" do
       context "with valid attributes" do
         it "updates object" do
-          expect{patch :update, id: subject, asset: { name: 'new_asset' }.to change( subject.reload.name).to('new_asset')
+          expect{
+            patch :update, id: subject, asset: { name: 'new name' }
+          }.to change{subject.reload.name}.to('new name')
         end
 
-      it "rendirect to index path" do
-        patch :update, id: subject, asset: { name: 'new_asset' }
-        expect(response).to redirect_to assets_path
+        it "redirects to index path" do
+          patch :update, id: subject, asset: { name: 'new name' }
+          expect(response).to redirect_to assets_path
+        end
       end
     end
 
-
     describe "DELETE #destroy" do
-      before(:each) { FactoryGirl.create :asset, owner: user }
-
+      before (:each) {@asset = FactoryGirl.create(:asset)}
       it "deletes the asset" do
-        expect{ delete :destroy, id: @asset}.to change(Asset, :count).by(-1)
+        expect{
+          patch :destroy, id: @asset
+        }.to change(Asset, :count).by(-1)
       end
 
-      it "rendirect to assets#index" do
-        delete :destroy, id: asset
+      it "redirects to assets#index" do
+        patch :destroy, id: @asset
         expect(response).to redirect_to assets_path
       end
     end
 
   end
-
+  
 end
