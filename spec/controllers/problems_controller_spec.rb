@@ -69,18 +69,6 @@ RSpec.describe ProblemsController, :type => :controller do
       end
     end
 
-    describe "Get #edit" do
-      it "assigns the requested problem to subject" do
-        get :edit, id: subject
-        expect(assigns(:problem)).to eq(subject)
-      end
-
-      it "renders the :edit view" do
-        get :edit, id: subject
-        expect(response).to render_template :edit
-      end
-    end
-
     describe "PATCH #update" do
       context "with valid attributes" do
         it "updates object" do
@@ -93,20 +81,6 @@ RSpec.describe ProblemsController, :type => :controller do
           patch :update, id: subject, problem: {description:'new description'}
           expect(response).to redirect_to problems_path
         end
-      end
-    end
-
-    describe "DELETE #destroy" do
-      before (:each) {@problem = FactoryGirl.create(:problem, create_user:user)}
-      it "deletes the problem" do
-          expect{
-            patch :destroy, id: @problem
-          }.to change(Problem, :count).by(-1)
-      end
-
-      it "redirects to problems#index" do
-          patch :destroy, id: @problem
-          expect(response).to redirect_to problems_path
       end
     end
   end

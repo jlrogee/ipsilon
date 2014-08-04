@@ -34,4 +34,5 @@ class Problem < ActiveRecord::Base
     where("description like ? ", "%#{query}%")
   end
 
+  self.per_page = 10
 end

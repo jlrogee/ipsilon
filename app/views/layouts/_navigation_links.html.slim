@@ -1,5 +1,7 @@
 li= link_to "Instruction", knowledge_bases_path + "/index/instructions"
 li= link_to "Knowledge Base", knowledge_bases_path + "/index/kb"
-li= link_to "Categories", categories_path
-li= link_to "Problems", problems_path
-li= link_to "Organizations", organizations_path
+- if can? :create, current_user
+  li= link_to "Categories", categories_path
+  li= link_to "Priorities", priorities_path
+  li= link_to "Assets", assets_path
+

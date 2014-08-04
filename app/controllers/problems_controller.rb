@@ -1,8 +1,16 @@
 class ProblemsController < ApplicationController
-  before_action :find_by_id, only: [:destroy, :show, :update, :edit]
+
+  load_and_authorize_resource param_method: :problem_params
+
+  before_action :find_by_id, only: [:show, :update, :edit]
 
   def index
-    @problems = Problem.includes(:create_user)
+    if can? :create, current_user
+      @problems = Problem.includes(:create_user)
+    else
+      @problems = Problem.where("create_user_id = ? OR performer_user_id = ?", current_user.id, current_user.id)
+    end
+      @problems = @problems.paginate(:page => params[:page])
   end
 
   def show
@@ -32,17 +40,14 @@ class ProblemsController < ApplicationController
     end
   end
 
-  def destroy
-    @problem.destroy
-    redirect_to problems_path
-  end
+  private
 
-  def problem_params
-    params.require(:problem).permit(:description, :category_id,:state)
-  end
+    def problem_params
+      params.require(:problem).permit(:description, :category_id, :state, :priority_id)
+    end
 
-  def find_by_id
-    @problem = Problem.find(params[:id])
-  end
+    def find_by_id
+      @problem = Problem.find(params[:id])
+    end
 
 end
