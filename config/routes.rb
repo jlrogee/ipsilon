@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   resources :priorities, except: :show
 
+
   get 'search/:name' => 'search#index'
 
   resources :departaments

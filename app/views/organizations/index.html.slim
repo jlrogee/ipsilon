@@ -1,0 +1,27 @@
+.panel
+  table width='100%'
+    thead
+      th Name
+      th Address
+      th Phone
+      th City
+      th ZIP
+      th Country
+    tbody
+      - @organizations.each do |p|
+        tr
+          td= link_to p.orgname, organization_path(p)
+          td= p.address
+          td= p.phone
+          td= p.city
+          td= p.zipcode
+          td= p.country
+          td
+            - if can? :create, current_user
+              = link_to 'Edit', edit_organization_path(p)
+              |  |
+              = link_to 'Delete', organization_path(p), method: :delete, data: {confirm: 'sure?'}
+            - else
+              = link_to 'Show', organization_path(p)
+  - if can? :create, current_user
+    =link_to 'New organization', new_organization_path, class: 'button'

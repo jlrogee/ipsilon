@@ -19,8 +19,10 @@
             - if p.create_user.firstname?
               = p.create_user.firstname + " " + p.create_user.lastname
             - else
+
               = p.create_user.email
 
   = foundation_paginate @knowledge_bases
 
   =link_to 'New problem', new_problem_path, class: 'button tiny radius'
+
