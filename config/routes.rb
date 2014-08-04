@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   resources :problems, except: [:destroy, :edit] do
     resources :solutions, only: [:index, :new, :create]
   end
-  get 'knowledge_bases/index/kb' => 'knowledge_bases#index', as: 'kbase'
-  get 'knowledge_bases/index/instr' => 'knowledge_bases#index', as: 'inst'
+  get 'knowledge_bases/kb' => 'knowledge_bases#kb', as: 'kbase'
+  get 'knowledge_bases/instr' => 'knowledge_bases#instr', as: 'inst'
   resources :knowledge_bases, except: :index
 
   resources :priorities, except: :show

@@ -4,15 +4,14 @@ class KnowledgeBasesController < ApplicationController
 
   before_action :find_by_id, only: [:destroy, :show, :update, :edit]
 
-  def index
-    if params[:name] == "instructions"
-      @knowledge_bases = KnowledgeBase.instr.paginate(:page => params[:page])
-      render 'instruction'
-    else
+  def kb
       @knowledge_bases = KnowledgeBase.kb.paginate(:page => params[:page])
       render 'kb'
-    end
+  end
 
+  def instr
+    @knowledge_bases = KnowledgeBase.instr.paginate(:page => params[:page])
+    render 'instruction'
   end
 
   def create
