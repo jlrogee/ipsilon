@@ -1,8 +1,8 @@
-.authform
+.newform
   = simple_form_for @asset do |f|
     = f.input :name
     = f.input :type
-    = f.input :organization
+    = f.association :organization
     = f.input :account_number
     = f.input :user
     = f.submit "Save", :class => 'button tiny radius right'

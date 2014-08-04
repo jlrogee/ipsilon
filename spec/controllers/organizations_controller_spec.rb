@@ -19,12 +19,12 @@ RSpec.describe OrganizationsController, :type => :controller do
     end
 
     describe "Get #index" do
-      it "render :index view" do
+      it "render index view" do
         get :index
         expect(response).to render_template :index
       end
 
-      it "assigns the requested organization to subject" do
+      it "assigns the request organization to name" do
         get :index
         expect(assigns(:organizations)).to eq([subject])
       end
