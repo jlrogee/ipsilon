@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :knowledge_bases
 
   resources :priorities
+  resources :organizations
 
   get 'search/:name' => 'search#index'
 

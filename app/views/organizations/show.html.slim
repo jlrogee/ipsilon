@@ -1,0 +1,24 @@
+.panel
+  table width='100%'
+    tbody
+      -@organization.attributes.each do |attr|
+
+      tr
+        td= Organization.human_attribute_name(:orgname)
+        td= @organization.orgname
+      tr
+        td= Organization.human_attribute_name(:address)
+        td= @organization.address
+      tr
+        td= Organization.human_attribute_name(:phone)
+        td= @organization.phone
+      tr
+        td= Organization.human_attribute_name(:city)
+        td= @organization.city
+      tr
+        td= Organization.human_attribute_name(:zipcode)
+        td= @organization.zipcode
+      tr
+        td= Organization.human_attribute_name(:country)
+        td= @organization.country
+  = link_to "All organizations", organizations_path, class: 'button tiny radius'

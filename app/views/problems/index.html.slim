@@ -19,6 +19,6 @@
               |  |
               = link_to 'Delete', problem_path(p), method: :delete, data: {confirm: 'sure?'}
             - else
-              = link_to 'Show', problems_path(p)
+              = link_to 'Show', problem_path(p)
 - if can? :create, current_user
   =link_to 'New problem', new_problem_path, class: 'button'
