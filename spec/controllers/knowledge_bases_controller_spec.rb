@@ -5,7 +5,7 @@ RSpec.describe KnowledgeBasesController, :type => :controller do
   context "when user not logged in" do
     describe "Get #index" do
       it " redirect to login page" do
-        get :index
+        get :kb
         expect(response).to redirect_to new_user_session_path
       end
 
@@ -20,14 +20,14 @@ RSpec.describe KnowledgeBasesController, :type => :controller do
       sign_in user
     end
 
-    describe "Get #index" do
-      it "render index view" do
-        get :index
+    describe "Get #kb" do
+      it "render kb view" do
+        get :kb
         expect(response).to render_template :kb
       end
 
       it "assigns the request kbname to kb" do
-        get :index
+        get :kb
         expect(assigns(:knowledge_bases)).to eq([subject])
       end
     end
@@ -66,7 +66,7 @@ RSpec.describe KnowledgeBasesController, :type => :controller do
 
         it "redirects to index path" do
           post :create, knowledge_base: FactoryGirl.attributes_for(:kb)
-          expect(response).to redirect_to knowledge_bases_path + "/index/kb"
+          expect(response).to redirect_to kbase_path
         end
       end
     end
@@ -93,7 +93,7 @@ RSpec.describe KnowledgeBasesController, :type => :controller do
 
         it "redirects to index path" do
           patch :update, id: subject, knowledge_base: {description:'new description'}
-          expect(response).to redirect_to knowledge_bases_path + "/index/kb"
+          expect(response).to redirect_to kbase_path
         end
       end
     end
@@ -108,7 +108,7 @@ RSpec.describe KnowledgeBasesController, :type => :controller do
 
       it "redirects to knowledge_bases#index" do
         patch :destroy, id: @knowledge_base
-        expect(response).to redirect_to knowledge_bases_path + "/index/kb"
+        expect(response).to redirect_to kbase_path
       end
     end
 
