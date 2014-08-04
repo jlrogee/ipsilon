@@ -5,8 +5,7 @@ class PrioritiesController < ApplicationController
   before_action :find_by_id, only: [:destroy, :show, :update, :edit]
 
   def index
-    @priorities = Priority.all
-    @priorities = @priorities.paginate(:page => params[:page])
+    @priorities = Priority.all.paginate(:page => params[:page])
   end
 
   def create

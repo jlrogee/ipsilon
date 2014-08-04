@@ -6,11 +6,10 @@ class AssetsController < ApplicationController
 
   def index
     if params[:search]
-      @assets = Asset.search(params[:search])
+      @assets = Asset.search(params[:search]).paginate(:page => params[:page])
     else
-      @assets = Asset.all
+      @assets = Asset.all.paginate(:page => params[:page])
     end
-    @assets = @assets.paginate(:page => params[:page])
   end
 
   def create

@@ -6,11 +6,10 @@ class DepartamentsController < ApplicationController
 
   def index
     if params[:search]
-      @departaments = Departament.search(params[:search])
+      @departaments = Departament.search(params[:search]).paginate(:page => params[:page])
     else
-      @departaments = Departament.all
+      @departaments = Departament.all.paginate(:page => params[:page])
     end
-    @departaments = @departaments.paginate(:page => params[:page])
   end
 
   def create

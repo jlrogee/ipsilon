@@ -6,11 +6,10 @@ class CategoriesController < ApplicationController
 
   def index
     if params[:search]
-      @categories = Category.search(params[:search])
+      @categories = Category.search(params[:search]).paginate(:page => params[:page])
     else
-      @categories = Category.all
+      @categories = Category.all.paginate(:page => params[:page])
     end
-    @categories = @categories.paginate(:page => params[:page])
   end
 
   def create

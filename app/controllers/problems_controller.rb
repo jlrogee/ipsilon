@@ -6,11 +6,10 @@ class ProblemsController < ApplicationController
 
   def index
     if can? :create, current_user
-      @problems = Problem.includes(:create_user)
+      @problems = Problem.includes(:create_user).paginate(:page => params[:page])
     else
-      @problems = Problem.where("create_user_id = ? OR performer_user_id = ?", current_user.id, current_user.id)
+      @problems = Problem.where("create_user_id = ? OR performer_user_id = ?", current_user.id, current_user.id).paginate(:page => params[:page])
     end
-      @problems = @problems.paginate(:page => params[:page])
   end
 
   def show
