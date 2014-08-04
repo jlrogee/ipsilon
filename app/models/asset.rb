@@ -8,4 +8,8 @@ class Asset < ActiveRecord::Base
   enumerize :type, in: { hardware: 1, software: 2 }
 
   self.per_page = 10
+
+  def self.search(query)
+    where("name like ? OR account_number like ?", "%#{query}%", "%#{query}%")
+  end
 end

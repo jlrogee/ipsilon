@@ -17,6 +17,11 @@ class SearchController < ApplicationController
         @departaments = @departaments.paginate(:page => params[:page])
         render :template => 'departaments/index'
 
+      when params[:name] == "Asset"
+        @assets = Asset.search(params[:search])
+        @assets = @assets.paginate(:page => params[:page])
+        render :template => 'assets/index'
+
       when params[:name] == "Registration"
         @search = User.search(params[:search])
         @search = @search.paginate(:page => params[:page])
