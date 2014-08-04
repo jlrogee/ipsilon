@@ -66,7 +66,7 @@ RSpec.describe KnowledgeBasesController, :type => :controller do
 
         it "redirects to index path" do
           post :create, knowledge_base: FactoryGirl.attributes_for(:kb)
-          expect(response).to redirect_to knowledge_bases_path + "/index/kb"
+          expect(response).to redirect_to kb_path
         end
       end
     end
@@ -93,7 +93,7 @@ RSpec.describe KnowledgeBasesController, :type => :controller do
 
         it "redirects to index path" do
           patch :update, id: subject, knowledge_base: {description:'new description'}
-          expect(response).to redirect_to knowledge_bases_path + "/index/kb"
+          expect(response).to redirect_to kb_path
         end
       end
     end
@@ -108,7 +108,7 @@ RSpec.describe KnowledgeBasesController, :type => :controller do
 
       it "redirects to knowledge_bases#index" do
         patch :destroy, id: @knowledge_base
-        expect(response).to redirect_to knowledge_bases_path + "/index/kb"
+        expect(response).to redirect_to kb_path
       end
     end
     

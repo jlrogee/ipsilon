@@ -22,7 +22,7 @@ class KnowledgeBasesController < ApplicationController
     @knowledge_base = KnowledgeBase.new(knowledge_base_params)
     @knowledge_base.create_user_id = current_user.id
     if @knowledge_base.save
-      redirect_to knowledge_bases_path + "/index/" + (@knowledge_base.type.kb? ? "kb" : "instructions")
+      redirect_to (@knowledge_base.type.kb? ? kb_patch : inst_path)
     else
       render :new
     end
@@ -37,7 +37,7 @@ class KnowledgeBasesController < ApplicationController
   def update
     @knowledge_base.update_user_id = current_user.id
     if @knowledge_base.update(knowledge_base_params)
-      redirect_to knowledge_bases_path + "/index/" + (@knowledge_base.type.kb? ? "kb" : "instructions")
+      redirect_to (@knowledge_base.type.kb? ? kb_patch : inst_path)
     else
       render :edit
     end
@@ -45,7 +45,7 @@ class KnowledgeBasesController < ApplicationController
 
   def destroy
     @knowledge_base.destroy
-    redirect_to knowledge_bases_path + "/index/kb"
+    redirect_to kb_path
   end
 
   def new

@@ -11,7 +11,8 @@ Rails.application.routes.draw do
     resources :solutions, only: [:index, :new, :create]
   end
 
-  get 'knowledge_bases/index/:name' => 'knowledge_bases#index'
+  get 'knowledge_bases/index/kb' => 'knowledge_bases#index', as: 'kb'
+  get 'knowledge_bases/index/instr' => 'knowledge_bases#index', as: 'inst'
   resources :knowledge_bases
 
   resources :priorities, except: :show

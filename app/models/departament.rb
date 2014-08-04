@@ -8,4 +8,8 @@ class Departament < ActiveRecord::Base
     where("depname like ? OR adress like ? OR city like ? OR country like ? OR phone like ?",
           "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")
   end
+
+  def to_s
+    "#{depname} #{organization}"
+  end
 end
