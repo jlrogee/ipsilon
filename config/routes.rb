@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
   get 'knowledge_bases/index/kb' => 'knowledge_bases#index', as: 'kbase'
   get 'knowledge_bases/index/instr' => 'knowledge_bases#index', as: 'inst'
-  resources :knowledge_bases
+  resources :knowledge_bases, except: :index
 
   resources :priorities, except: :show
   resources :departaments
