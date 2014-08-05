@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
 
     user ||= User.new
-
+    can [:kb, :instr], KnowledgeBase
     if user.role.admin? || user.role.dispatcher?
       can :manage, :all
     elsif user.role.user? || user.role.spec?
