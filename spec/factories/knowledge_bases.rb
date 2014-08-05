@@ -7,6 +7,8 @@ FactoryGirl.define do
       type { :kb }
       description { Faker::Lorem.paragraph }
       instruction { Faker::Lorem.paragraph }
+      create_user_id { '2' }
+      update_user_id { '1' }
     end
     factory :instruction do
       kbname { Faker::Name.title }

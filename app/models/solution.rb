@@ -3,5 +3,6 @@ class Solution < ActiveRecord::Base
   has_many    :problems
   has_many    :uploads, :as => :attachable, dependent: :destroy
 
-  validates   :description, presence: true
+  validates   :description, presence: true, length: { maximum: 65535 }
+  validates_associated :create_user, :problems, :uploads
 end

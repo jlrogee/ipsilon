@@ -53,12 +53,16 @@
 // to make views framework-neutral
 main {
   @include twelve-columns;
-  background-color: #eee;
+  background-color: #fafafa;
   }
 section {
   @extend .row;
   margin-top: 20px;
   }
+footer {
+  @include twelve-columns;
+  background-color: #fafafa;
+}
 
 // Styles for form views
 // using Foundation
@@ -98,6 +102,10 @@ section {
   font-size: rem-calc(16);
   color: white;
 }
+.authform small {
+  color: #de2d0f;
+  font-weight: bold;
+}
 .button-xs {
   @extend .button;
   @extend .radius;
@@ -106,7 +114,7 @@ section {
 
 .newform {
   padding-top: 30px;
-  max-width: 100%;
+  max-width: 80%;
   margin: 0 auto;
 }
 .newform form {
@@ -143,4 +151,8 @@ section {
   height:350px;
   padding: 3px;
   border: none;
+}
+.newform small {
+  color: #de2d0f;
+  font-weight: bold;
 }
