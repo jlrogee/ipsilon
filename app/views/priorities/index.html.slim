@@ -1,0 +1,16 @@
+.panel
+  table width='100%'
+    thead
+      th width='65%'= Priority.human_attribute_name(:name)
+      th width='35%'= Priority.human_attribute_name(:days_to_close)
+    tbody
+      - @priorities.each do |c|
+        tr
+          td= link_to c.prname, edit_priority_path(c)
+          td= c.days_to_close
+
+  = foundation_paginate @priorities
+
+- if can? :create, current_user
+  = link_to 'New priority', new_priority_path, class: 'button tiny radius'
+

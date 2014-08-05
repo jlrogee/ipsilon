@@ -65,5 +65,5 @@ RSpec.describe Problem, :type => :model do
   it { is_expected.to belong_to(:create_user).class_name('User') }
   it { is_expected.to belong_to(:last_update_user).class_name('User') }
   it { is_expected.to belong_to(:performer_user).class_name('User') }
-
+  it { is_expected.to belong_to(:category) }
 end

@@ -1,0 +1,10 @@
+.newform
+  = simple_form_for @departament do |f|
+    = f.input :depname, :label => "Departament name"
+    = f.association :organization
+    = f.input :adress
+    = f.input :city
+    = f.input :zipcode
+    = f.country_select :country, :label => "Country"
+    = f.input :phone, :placeholder => "+xx(xxx)xxx-xxxx"
+    = f.submit "Save", :class => 'button tiny radius right'

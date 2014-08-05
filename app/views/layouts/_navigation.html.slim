@@ -1,0 +1,27 @@
+nav.top-bar data-topbar="" 
+  ul.title-area
+    li.name= link_to 'Home', root_path
+    li.toggle-topbar.menu-icon
+      a href="#"  Menu
+
+  .top-bar-section
+    ul
+      = render 'layouts/navigation_links'
+    ul.right
+      li.has-form
+        = form_tag('/search/' + controller_name.classify, :method => "get", id: "search-form") do
+          .row.collapse
+            .large-8.small-9.columns
+              = text_field_tag :search, params[:search], placeholder: "Search " + controller_name.classify
+
+            .large-4.small-3.columns
+              = submit_tag "Search", :name => nil, class: "button alert expand"
+      - if user_signed_in?
+        li
+          - if current_user.firstname?
+            = link_to current_user.fio, edit_user_registration_path, method: :get
+          - else
+            = link_to current_user.email, edit_user_registration_path, method: :get
+        li  = link_to "Sign out", destroy_user_session_path, method: :delete
+      - else
+        li= link_to "Sign in", new_user_session_path, method: :get

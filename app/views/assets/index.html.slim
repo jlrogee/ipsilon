@@ -1,0 +1,32 @@
+.panel
+  table width='100%'
+    thead
+      th width='30%'= Asset.human_attribute_name(:name)
+      th width='15%'= Asset.human_attribute_name(:type)
+      th width='20%'= Asset.human_attribute_name(:organization)
+      th width='10%'= Asset.human_attribute_name(:account_number)
+      th width='15%'= Asset.human_attribute_name(:user)
+      th width='10%' Actions
+    tbody
+      - @assets.each do |a|
+        tr
+          td= link_to a.name, asset_path(a)
+          td= a.type
+          td= a.type
+          td= a.organization
+          td= a.account_number
+          td= a.user
+          td
+            - if can? :create, current_user
+              = link_to 'Edit', edit_asset_path(a)
+              |  |
+              = link_to ' Delete', asset_path(c), method: :delete, data: { confirm: "Are you sure?"}
+
+            - else
+              = link_to 'Show', asset_path(c)
+
+  = foundation_paginate @assets
+
+- if can? :create, current_user
+  = link_to 'New asset', new_asset_path, class: 'button tiny radius'
+
