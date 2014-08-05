@@ -16,13 +16,9 @@ deploy:
   provider: heroku
   api_key:
     secure: GI19eRobuRJvcdzV9P0iFtGjbDG7xzHEc18ovf55XCjj0Z2OTeROaMtK1Gk8QnjFt9LSuXUV+vULWRMrPpER/rZ90DajOaMwKDbYoecxUU2x8KvbR6GTxOiEEPdim0WVz0szA6S62mZ2MPV1iI3jgdkex+GYbfXIG0OT+8ucQKo=
-  app:
-    master: ipsilonrb
-    dev: ipsilondev
+  app: ipsilonrb
   on:
     repo: jlrogee/ipsilon
-    branch: master
-    branch: dev
   run:
   - "rake db:migrate"
   - "rake db:seed"
