@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: ipsilon_production
+  database: ipsilon_prod
   username: postgres
-  password: <%= ENV['POPOV_DATABASE_PASSWORD'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
