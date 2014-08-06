@@ -1,9 +1,17 @@
 fieldset
   legend Description
   = @problem.description
-fieldset
-  legend Category
-  = @problem.category
-fieldset
-  legend State
-  = @problem.state
+  hr
+  p
+  .p
+    b State: &nbsp;
+    = @problem.state.to_s
+    b &nbsp; Assigned: &nbsp;
+    = @problem.assigned
+  p
+  .p
+    b Create User: &nbsp;
+    = @problem.create_user
+    b &nbsp; Category: &nbsp;
+    = @problem.category.to_s
+

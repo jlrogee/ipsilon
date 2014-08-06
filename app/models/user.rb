@@ -24,13 +24,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :uploads
 
   validates_acceptance_of :agree, :on => :create
-  attr_accessor :fio
-  self.per_page = 10
 
-  def initialize(attributes={})
-    super
-    @fio = "#{firstname} #{lastname}"
-  end
+  self.per_page = 10
 
   scope :search, -> (query) {where("email like ? OR firstname like ? OR lastname like ? OR phone like ?",
                                   "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")}
@@ -42,5 +37,6 @@ class User < ActiveRecord::Base
   def to_s
     fio + " #{email}"
   end
+
 end
 

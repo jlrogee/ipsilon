@@ -1,17 +1,15 @@
-h3 Problem
+h3 = @problem.show_id
 .panel
   = render 'show'
   - @problem.solutions.each do |sol_field|
     = render 'show_solutions', :f => sol_field unless sol_field.new_record?
 .newform
-  = nested_form_for @problem do |f|
+  = simple_nested_form_for @problem do |f|
     = f.label :state
-    = f.collection_select :state_event, @problem.state_transitions, :human_to_name, :human_to_name, :include_blank => @problem.human_state_name
-    = f.label :category
-    = f.collection_select :category, Category.all, :id, :to_s
+    = f.collection_select :state_event, @problem.state_transitions, :event, :human_to_name, :include_blank => @problem.human_state_name
+    = f.association :category
     = f.fields_for :solutions do |solution_form|
       = render 'solution_fields', :f => solution_form if solution_form.object.new_record?
     - if current_user.role.admin? || current_user.role.dispatcher
-      = f.label "Performer"
-      = f.collection_select :performer_user, User.all, :id, :to_s
+      = f.association :performer_user
     = f.submit "Save", :class => 'button tiny radius'
