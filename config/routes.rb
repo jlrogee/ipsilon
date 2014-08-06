@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root 'problems#index'
 
   resources :problems, except: :destroy do
-    resources :solutions, except: :destroy
+    resources :solutions, only: [:index, :show, :new, :create]
   end
   get 'knowledge_bases/kb' => 'knowledge_bases#kb', as: 'kbase'
   get 'knowledge_bases/instr' => 'knowledge_bases#instr', as: 'inst'

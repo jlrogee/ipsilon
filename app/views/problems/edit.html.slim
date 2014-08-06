@@ -3,11 +3,11 @@
   = nested_form_for @problem do |f|
     = f.label :state
     = f.collection_select :state_event, @problem.state_transitions, :human_to_name, :human_to_name, :include_blank => @problem.human_state_name
-    = f.association :category
+    = f.label :category
+    = f.collection_select :category, Category.all, :id, :to_s
     = f.fields_for :solutions do |solution_form|
-      = solution_form.input_field :description
-    - end
+      = render 'solution_fields', :f => solution_form
     - if current_user.role.admin? || current_user.role.dispatcher
-      = f.association :performer_user
+      = f.label "Performer"
+      = f.collection_select :performer_user, User.all, :id, :to_s
     = f.submit "Save", :class => 'button tiny radius'
-  
