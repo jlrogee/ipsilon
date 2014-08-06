@@ -3,12 +3,13 @@ rvm:
 - 2.1.2
 env:
 - DB=postgresql
+- "gem=2.2.2"
 script:
 - RAILS_ENV=test bundle exec rake db:migrate --trace
 - bundle exec rake
 before_script:
 - cp config/database.yml.sample config/database.yml
-- psql -c 'create database ipsilon_test' -U postgres
+- psql -c 'create database ip_test' -U postgres
 - bundle exec rake db:migrate RAILS_ENV=test
 - bundle exec rspec spec
 deploy:
