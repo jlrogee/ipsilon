@@ -5,4 +5,5 @@ RSpec.describe Upload, :type => :model do
     expect(FactoryGirl.build(:upload)).to be_valid
   end
   it { is_expected.to belong_to(:attachable) }
+  it { is_expected.to validate_presence_of(:avatar) }
 end

@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
   def fio
     "#{firstname} #{lastname}"
   end
+
   def to_s
     fio + " #{email}"
   end
