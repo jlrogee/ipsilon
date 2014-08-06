@@ -8,6 +8,7 @@ class SolutionsController < ApplicationController
 
   def create
     @solution = @problem.solutions.new(solution_params)
+    @solution.created_user_id = current_user.id
     if @solution.save
       redirect_to edit_problem_path(@problem)
     else

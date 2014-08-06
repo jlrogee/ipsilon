@@ -13,7 +13,7 @@
           td= link_to p.description, edit_problem_path(p)
           td= p.state
           td= p.priority
-          td= Date.today + p.priority.days_to_close
+          td= Date.today + (p.priority.try(:days_to_close) || 0)
           td= p.category
           td
             - if p.create_user.firstname?
@@ -21,7 +21,7 @@
             - else
               = p.create_user.email
 
-  = foundation_paginate @knowledge_bases
+  = foundation_paginate @problems
 
   =link_to 'New problem', new_problem_path, class: 'button tiny radius'
 

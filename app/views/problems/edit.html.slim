@@ -1,4 +1,8 @@
-= render 'show'
+h3 Problem
+.panel
+  = render 'show'
+  - @problem.solutions.each do |sol_field|
+    = render 'show_solutions', :f => sol_field unless sol_field.new_record?
 .newform
   = nested_form_for @problem do |f|
     = f.label :state
@@ -6,7 +10,7 @@
     = f.label :category
     = f.collection_select :category, Category.all, :id, :to_s
     = f.fields_for :solutions do |solution_form|
-      = render 'solution_fields', :f => solution_form
+      = render 'solution_fields', :f => solution_form if solution_form.object.new_record?
     - if current_user.role.admin? || current_user.role.dispatcher
       = f.label "Performer"
       = f.collection_select :performer_user, User.all, :id, :to_s

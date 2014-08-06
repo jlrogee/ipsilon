@@ -2,7 +2,7 @@ class ProblemsController < ApplicationController
 
   load_and_authorize_resource param_method: :problem_params
 
-  before_action :find_by_id, only: [:show, :update, :edit]
+  before_action :find_by_id, only: [:show, :update]
 
   def index
     if can? :create, current_user
@@ -29,6 +29,7 @@ class ProblemsController < ApplicationController
   end
 
   def edit
+    find_by_id.solutions.build
   end
 
   def update
