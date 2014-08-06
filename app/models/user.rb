@@ -40,5 +40,8 @@ class User < ActiveRecord::Base
   def fio
     "#{firstname} #{lastname}"
   end
+  def firstname
+    "#{firstname}"
+  end
 end
 

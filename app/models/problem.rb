@@ -6,7 +6,8 @@ class Problem < ActiveRecord::Base
   belongs_to :category
   validates :description, presence: true
   has_many :uploads, :as => :attachable
-  
+
+  self.inheritance_column = :_type_disabled
 
   state_machine :state, :initial => :new do
     event :switch_to_w do
