@@ -8,7 +8,7 @@ class Asset < ActiveRecord::Base
   enumerize :type, in: { hardware: 1, software: 2 }
 
   self.per_page = 10
-
+  self.inheritance_column = :_type_disabled
   scope :search, -> (query) { where("name like ? OR account_number like ?", "%#{query}%", "%#{query}%") }
 
 end
