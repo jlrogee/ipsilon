@@ -8,7 +8,7 @@ class Problem < ActiveRecord::Base
   has_many :uploads, :as => :attachable
   has_many :solutions
 
-  accepts_nested_attributes_for :solutions
+  accepts_nested_attributes_for :solutions, :uploads
 
   state_machine :state, :initial => :new do
     event :switch_to_w do

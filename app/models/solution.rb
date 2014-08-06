@@ -4,4 +4,6 @@ class Solution < ActiveRecord::Base
   has_many    :uploads, :as => :attachable, dependent: :destroy
 
   validates   :description, presence: true, length: { maximum: 65500 }
+
+  accepts_nested_attributes_for :uploads
 end
