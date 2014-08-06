@@ -34,7 +34,9 @@ class User < ActiveRecord::Base
 
   scope :search, -> (query) {where("email like ? OR firstname like ? OR lastname like ? OR phone like ?",
                                   "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")}
-
+  def to_s
+    fio + " #{email}"
+  end
   def fio
     "#{firstname} #{lastname}"
   end
