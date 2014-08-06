@@ -67,4 +67,4 @@ gem 'slim'
 gem 'foundation-will_paginate'
 gem 'country_select'
 gem 'nested_form'
-
+gem 'rails_12factor'
