@@ -15,9 +15,13 @@
       - if current_user.role.admin? || current_user.role.dispatcher?
         = f.label :role, "Role"
         = f.select :role, User.role.options
+        = f.label :departament
+        = f.collection_select :departament, Departament.all, :id, :to_s
       - else
         = f.label :role, "Role"
         = f.text_field :role, :value => current_user.role, disabled: true
+        = f.label :departament
+        = f.text_field :departament, :value => current_user.departament, disabled: true
       - if devise_mapping.confirmable? && resource.pending_reconfirmation?
         div
           | Currently waiting confirmation for: #{resource.unconfirmed_email}

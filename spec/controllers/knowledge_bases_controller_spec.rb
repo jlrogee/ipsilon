@@ -19,6 +19,14 @@ RSpec.describe KnowledgeBasesController, :type => :controller do
     before do
       sign_in user
     end
+    it { is_expected.to belong_to(:create_user).class_name(User) }
+    it { is_expected.to belong_to(:update_user).class_name(User) }
+    it { is_expected.to have_many(:uploads) }
+    it { is_expected.not_to ensure_length_of(:kbname).is_at_most(260)}
+    it { is_expected.not_to ensure_length_of(:description).is_at_most(66000)}
+    it { is_expected.not_to ensure_length_of(:instruction).is_at_most(66000)}
+    it { is_expected.to validate_presence_of(:kbname) }
+    it { is_expected.to validate_uniqueness_of(:kbname) }
 
     describe "Get #kb" do
       it "render kb view" do

@@ -10,6 +10,8 @@ class Problem < ActiveRecord::Base
 
   accepts_nested_attributes_for :solutions, :uploads
 
+  self.inheritance_column = :_type_disabled
+
   state_machine :state, :initial => :new do
     event :switch_to_w do
       transition [:new, :returned, :dispath, :done, :closed] => :work

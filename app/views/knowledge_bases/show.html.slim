@@ -4,8 +4,8 @@
     tr
       td= @knowledge_base.description
     tr
-      td= @knowledge_base.instruction.gsub!( /\n/, '<br />').html_safe
+      td= @knowledge_base.instruction.gsub( /\n/, '<br />').html_safe
 
 = link_to @knowledge_base.type.kb? ? "List knowledge base" : "List instructions",
-          knowledge_bases_path + "/index/" + (@knowledge_base.type.kb? ? "kb" : "instructions"),
+          (@knowledge_base.type.kb? ? kbase_path : inst_path),
           class: 'button tiny radius'
