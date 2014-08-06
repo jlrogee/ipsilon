@@ -6,7 +6,9 @@ class Problem < ActiveRecord::Base
   belongs_to :category
   validates :description, presence: true
   has_many :uploads, :as => :attachable
-  
+  has_many :solutions
+
+  accepts_nested_attributes_for :solutions
 
   state_machine :state, :initial => :new do
     event :switch_to_w do

@@ -1,1 +1,14 @@
-= render 'form'
+= render 'show'
+.newform
+  = simple_nested_form_for @problem do |f|
+    p Problem
+    = f.label :state
+    = f.collection_select :state_event, @problem.state_transitions, :human_to_name, :human_to_name, :include_blank => @problem.human_state_name
+    = f.association :category
+    = f.fields_for :solutions do |solution_form|
+      = solution_form.input_field :description
+    - end
+    - if current_user.role.admin? || current_user.role.dispatcher
+      = f.association :performer_user
+    = f.submit "Save", :class => 'button tiny radius'
+  

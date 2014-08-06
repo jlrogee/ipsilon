@@ -7,6 +7,5 @@
       = f.label :state
       = f.collection_select :state_event, @problem.state_transitions, :human_to_name, :human_to_name, :include_blank => @problem.human_state_name
     = f.association :category
-    = f.association :priority
     = f.submit "Save", :class => 'button tiny radius'
 
