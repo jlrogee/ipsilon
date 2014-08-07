@@ -58,12 +58,12 @@ RSpec.describe ProblemsController, :type => :controller do
       context "with valid attributes" do
         it "creates new object" do
           expect{
-            post :create, problem: FactoryGirl.attributes_for(:problem)
+            post :create, problem: (FactoryGirl.build :problem).attributes.symbolize_keys#FactoryGirl.attributes_for(:problem)
           }.to change(Problem, :count).by(1)
         end
 
         it "redirects to index path" do
-          post :create, problem: FactoryGirl.attributes_for(:problem)
+          post :create, problem: (FactoryGirl.build :problem).attributes.symbolize_keys#FactoryGirl.attributes_for(:problem)
           expect(response).to redirect_to problems_path
         end
       end
@@ -83,5 +83,6 @@ RSpec.describe ProblemsController, :type => :controller do
         end
       end
     end
+
   end
 end

@@ -3,6 +3,8 @@ class Priority < ActiveRecord::Base
 
   self.per_page = 10
 
+  validates :prname, presence: true, length: {minimum: 2}
+
   def to_s
     "#{prname}"
   end

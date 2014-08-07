@@ -23,9 +23,12 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :uploads
 
-  validates_acceptance_of :agree, :on => :create
+
   attr_accessor :fio
   self.per_page = 10
+
+  validates_acceptance_of :agree, :on => :create
+
 
   def initialize(attributes={})
     super

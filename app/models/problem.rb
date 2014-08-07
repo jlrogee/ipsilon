@@ -4,7 +4,6 @@ class Problem < ActiveRecord::Base
   belongs_to :last_update_user, class_name: User
   belongs_to :priority
   belongs_to :category
-  validates :description, presence: true
   has_many :uploads, :as => :attachable
   
 
@@ -31,6 +30,8 @@ class Problem < ActiveRecord::Base
   end
 
   scope :search, -> (query) {where("description like ? ", "%#{query}%")}
+
+  validates :description, :category, presence: true
 
   self.per_page = 10
 end
