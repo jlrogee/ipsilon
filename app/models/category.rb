@@ -3,6 +3,7 @@ class Category < ActiveRecord::Base
   has_many :problems, foreign_key: 'category_id', class_name: 'Problem'
 
   validates :catname, :description, presence: true, length: { maximum: 100 }
+  validates :description, presence: true
 
   self.per_page = 10
 
