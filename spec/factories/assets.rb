@@ -4,7 +4,6 @@ FactoryGirl.define do
   factory :asset do
     name { Faker::Name.title }
     account_number { Faker::Lorem.word }
-    association :organization, :user
 
   end
 end
