@@ -50,7 +50,7 @@ class Problem < ActiveRecord::Base
   end
 
   def datex
-    priority ? (Date.today + priority.to_i) : Date.today
+    priority ? Time.at( created_at.to_time.to_i + (priority.to_i * 86400) ): created_at
   end
 
 end
