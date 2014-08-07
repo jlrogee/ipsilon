@@ -1,5 +1,5 @@
 class Upload < ActiveRecord::Base
-
+  attr_accessor :avatar
   belongs_to :attachable, polymorphic: true
 
   validates_presence_of :avatar

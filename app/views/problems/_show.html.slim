@@ -8,10 +8,15 @@ fieldset
     = @problem.state.to_s
     b &nbsp; Assigned: &nbsp;
     = @problem.assigned
+    b &nbsp; Planned date of meeting: &nbsp;
+    = @problem.datex
   p
   .p
     b Create User: &nbsp;
     = @problem.create_user
     b &nbsp; Category: &nbsp;
     = @problem.category.to_s
+    b &nbsp; Date created: &nbsp;
+    = @problem.created_at
+
 

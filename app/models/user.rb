@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :solutions,    :foreign_key => "create_user_id", class_name: "Solution"
 
   belongs_to :departament
+  has_many :asset
 
   extend Enumerize
   enumerize :role, in: { user: 1, spec: 2, dispatcher: 3, admin: 4 }, default: :user
@@ -36,6 +37,7 @@ class User < ActiveRecord::Base
   def to_s
     fio + " #{email}"
   end
+
 
 end
 

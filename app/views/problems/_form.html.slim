@@ -1,11 +1,7 @@
 .newform
-  = simple_form_for @problem do |f|
+  = simple_form_for @problem, :html => {:multipart => true} do |f|
     p Problem
-    = f.label :description
-    = f.input_field :description
-    -unless @problem.new_record?
-      = f.label :state
-      = f.collection_select :state_event, @problem.state_transitions, :human_to_name, :human_to_name, :include_blank => @problem.human_state_name
+    = f.input :description, :as => :text
     = f.association :category
     = f.submit "Save", :class => 'button tiny radius'
 

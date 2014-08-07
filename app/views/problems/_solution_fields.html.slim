@@ -1,3 +1,4 @@
 .nested-fields
   = f.label :description
   = f.text_area :description
+  = f.hidden_field :create_user_id, :value => current_user.id

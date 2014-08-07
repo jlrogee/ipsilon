@@ -6,7 +6,7 @@ class ProblemsController < ApplicationController
 
   def index
     if can? :create, current_user
-      @problems = Problem.includes(:create_user).paginate(:page => params[:page])
+      @problems = Problem.includes(:create_user, :category, :solutions, :priority).paginate(:page => params[:page])
     else
       @problems = Problem.where("create_user_id = ? OR performer_user_id = ?", current_user.id, current_user.id).paginate(:page => params[:page])
     end
@@ -16,7 +16,6 @@ class ProblemsController < ApplicationController
   end
 
   def new
-    @problem = Problem.new
   end
 
   def create
@@ -45,9 +44,10 @@ class ProblemsController < ApplicationController
   private
 
     def problem_params
-      if current_user.role.admin? || current_user.role.dispather?
+      if current_user.role.admin? || current_user.role.dispatcher?
         params.require(:problem).permit(:description, :category_id, :state, :priority_id, :performer_user_id, :last_update_user_id,
-                                        :create_user_id, :last_update_user_id, :state_event, solutions_attributes: solution_params)
+                                        :create_user_id, :last_update_user_id, :state_event,
+                                        solutions_attributes: solution_params)
       else
         params.require(:problem).permit(:description, :category_id, :state, :create_user_id, :last_update_user_id,
                                         :last_update_user_id, solutions_attributes: solution_params)

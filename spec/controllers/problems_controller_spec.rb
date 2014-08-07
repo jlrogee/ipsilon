@@ -71,5 +71,16 @@ RSpec.describe ProblemsController, :type => :controller do
         end
       end
     end
+    describe "Get #edit" do
+      it "assigns the requested organization to subject" do
+        get :edit, id: subject
+        expect(assigns(:problem)).to eq(subject)
+      end
+
+      it "renders the :edit view" do
+        get :edit, id: subject
+        expect(response).to render_template :edit
+      end
+    end
   end
 end
