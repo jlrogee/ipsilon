@@ -1,7 +1,8 @@
-.newform
-  = simple_form_for @problem, :html => {:multipart => true} do |f|
-    p Problem
-    = f.input :description, :as => :text
-    = f.association :category
-    = f.submit "Save", :class => 'button tiny radius'
+h3 New Problem
+.panel
+  .newform
+    = simple_form_for @problem, :html => {:multipart => true} do |f|
+      = f.input :description, :as => :text
+      = f.association :category
+      = f.submit "Save", :class => 'button tiny radius'
 
