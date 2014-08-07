@@ -6,6 +6,6 @@ FactoryGirl.define do
     address { Faker::Address.street_address}
     city { Faker::Address.city }
     country { Faker::Address.country }
-    zipcode { Faker::Address.zip_code }
+    zipcode { Faker::Number.number(6) }
   end
 end

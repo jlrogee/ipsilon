@@ -66,4 +66,6 @@ RSpec.describe Problem, :type => :model do
   it { is_expected.to belong_to(:last_update_user).class_name('User') }
   it { is_expected.to belong_to(:performer_user).class_name('User') }
   it { is_expected.to belong_to(:category) }
+  it { is_expected.to validate_presence_of(:description)}
+  it { is_expected.to validate_presence_of(:category)}
 end

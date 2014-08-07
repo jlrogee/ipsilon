@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :solutions,    :foreign_key => "create_user_id", class_name: "Solution"
 
   belongs_to :departament
+  has_many :asset
 
   extend Enumerize
   enumerize :role, in: { user: 1, spec: 2, dispatcher: 3, admin: 4 }, default: :user
@@ -22,10 +23,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   accepts_nested_attributes_for :uploads
+  self.per_page = 10
 
   validates_acceptance_of :agree, :on => :create
+  validates :role, presence: true, inclusion: %w(user admin spec dispatcher)
 
-  self.per_page = 10
+
 
   scope :search, -> (query) {where("email like ? OR firstname like ? OR lastname like ? OR phone like ?",
                                   "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")}
@@ -36,6 +39,7 @@ class User < ActiveRecord::Base
   def to_s
     fio + " #{email}"
   end
+
 
 end
 
