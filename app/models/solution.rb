@@ -6,6 +6,6 @@ class Solution < ActiveRecord::Base
   accepts_nested_attributes_for :uploads
 
   validates   :description, presence: true, length: { maximum: 65500 }
-  validates_associated :create_user, :problem, :uploads
+  validates_associated :create_user, :problem, :uploads, allow_nil: true
 
 end

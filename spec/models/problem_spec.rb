@@ -67,5 +67,5 @@ RSpec.describe Problem, :type => :model do
   it { is_expected.to belong_to(:performer_user).class_name('User') }
   it { is_expected.to belong_to(:category) }
   it { is_expected.to validate_presence_of(:description)}
-  it { is_expected.to validate_presence_of(:category)}
+  it { is_expected.to ensure_length_of(:description).is_at_most(65500)}
 end

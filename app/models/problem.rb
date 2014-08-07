@@ -11,6 +11,8 @@ class Problem < ActiveRecord::Base
   accepts_nested_attributes_for :solutions
   accepts_nested_attributes_for :uploads
 
+  validates :description, presence: true, length: {maximum: 65500}
+  validates_associated  :create_user, :performer_user, :last_update_user, :priority, :category, :solutions, :uploads, allow_nil: true
   self.inheritance_column = :_type_disabled
 
   state_machine :state, :initial => :new do
@@ -36,8 +38,6 @@ class Problem < ActiveRecord::Base
   end
 
   scope :search, -> (query) {where("description like ? ", "%#{query}%")}
-
-  validates :description, :category, presence: true
 
   self.per_page = 10
 
