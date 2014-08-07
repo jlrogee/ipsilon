@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :category do
     catname { Faker::Name.title }
-    description { Faker::Lorem.paragraph }
+    description { Faker::Lorem.characters(240) }
   end
 end
