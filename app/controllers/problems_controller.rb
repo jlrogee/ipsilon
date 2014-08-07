@@ -2,7 +2,7 @@ class ProblemsController < ApplicationController
 
   load_and_authorize_resource param_method: :problem_params
 
-  before_action :find_by_id, only: [:show, :update, :edit]
+  before_action :find_by_id, only: [:show, :update]
 
   def index
     if can? :create, current_user
@@ -29,9 +29,11 @@ class ProblemsController < ApplicationController
   end
 
   def edit
+    find_by_id.solutions.build
   end
 
   def update
+    @problem.last_update_user = current_user
     if @problem.update(problem_params)
       redirect_to problems_path
     else
@@ -43,7 +45,18 @@ class ProblemsController < ApplicationController
   private
 
     def problem_params
-      params.require(:problem).permit(:description, :category_id, :state, :priority_id)
+      if current_user.role.admin? || current_user.role.dispather?
+        params.require(:problem).permit(:description, :category_id, :state, :priority_id, :performer_user_id, :last_update_user_id,
+                                        :create_user_id, :last_update_user_id, :state_event, solutions_attributes: solution_params)
+      else
+        params.require(:problem).permit(:description, :category_id, :state, :create_user_id, :last_update_user_id,
+                                        :last_update_user_id, solutions_attributes: solution_params)
+      end
+
+    end
+
+    def solution_params
+      [:description, :problem_id, :create_user_id, :id]
     end
 
     def find_by_id

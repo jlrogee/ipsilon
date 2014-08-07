@@ -1,11 +1,16 @@
 class Problem < ActiveRecord::Base
-  belongs_to :create_user, class_name: User
-  belongs_to :performer_user, class_name: User
-  belongs_to :last_update_user, class_name: User
-  belongs_to :priority
-  belongs_to :category
+
+  belongs_to :create_user, foreign_key: :create_user_id, class_name: User
+  belongs_to :performer_user, foreign_key: :performer_user_id, class_name: User
+  belongs_to :last_update_user, foreign_key: :last_update_user_id, class_name: User
+  belongs_to :priority, foreign_key: :priority_id, class_name: Priority
+  belongs_to :category, foreign_key: :category_id, class_name: Category
   has_many :uploads, :as => :attachable
-  
+  has_many :solutions
+
+  accepts_nested_attributes_for :solutions, :uploads
+
+  self.inheritance_column = :_type_disabled
 
   state_machine :state, :initial => :new do
     event :switch_to_w do
@@ -34,4 +39,12 @@ class Problem < ActiveRecord::Base
   validates :description, :category, presence: true
 
   self.per_page = 10
+
+  def show_id
+    "Problem #{id}"
+  end
+
+  def assigned
+    performer_user_id ? User.find(performer_user_id).to_s : ""
+  end
 end

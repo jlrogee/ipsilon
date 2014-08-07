@@ -30,18 +30,6 @@ RSpec.describe ProblemsController, :type => :controller do
       end
     end
 
-    describe "Get #show" do
-      it "assigns the requested problem to subject" do
-        get :show, id: subject
-        expect(assigns(:problem)).to eq(subject)
-      end
-
-      it "renders the :show view" do
-        get :show, id: subject
-        expect(response).to render_template :show
-      end
-    end
-
     describe "Get #new" do
       it "assigns the requested problem to new" do
         get :new

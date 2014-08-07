@@ -60,7 +60,10 @@ section {
   margin-top: 20px;
   }
 footer {
-  @include twelve-columns;
+  background-color: #fafafa;
+}
+body {
+   @include twelve-columns;
   background-color: #fafafa;
 }
 
@@ -116,16 +119,30 @@ footer {
   padding-top: 30px;
   max-width: 80%;
   margin: 0 auto;
+  text-size: rem-calc(12);
 }
 .newform form {
   @include panel();
   padding-bottom: 60px;
+  font-size: rem-calc(12);
 }
 .newform form a {
-  font-size: rem-calc(13);
+  font-size: rem-calc(12);
 }
 .newform form p {
-  font-size: rem-calc(13);
+  font-size: rem-calc(12);
+}
+.newform form label {
+  font-size: rem-calc(12);
+}
+.newform form select {
+  font-size: rem-calc(12);
+}
+.newform form text {
+  font-size: rem-calc(12);
+}
+.newform form p {
+  font-size: rem-calc(12);
 }
 .newform .form-group {
   // for Bootstrap, not used for Foundation
@@ -148,9 +165,17 @@ footer {
   color: white;
 }
 .newform textarea {
-  height:350px;
+  height:200px;
   padding: 3px;
   border: none;
+  font-size: rem-calc(12);
+}
+.panel legend {
+  background-color: #f2f2f2;
+
+}
+.panel fieldset {
+  font-size: rem-calc(12);
 }
 .newform small {
   color: #de2d0f;

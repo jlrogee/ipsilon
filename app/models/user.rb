@@ -22,26 +22,22 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   accepts_nested_attributes_for :uploads
-
-
-  attr_accessor :fio
   self.per_page = 10
 
   validates_acceptance_of :agree, :on => :create
+  validates :role, presence: true, inclusion: %w(user admin spec dispatcher)
 
 
-  def initialize(attributes={})
-    super
-    @fio = "#{firstname} #{lastname}"
-  end
 
   scope :search, -> (query) {where("email like ? OR firstname like ? OR lastname like ? OR phone like ?",
                                   "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")}
-  def to_s
-    fio + " #{email}"
-  end
   def fio
     "#{firstname} #{lastname}"
   end
+
+  def to_s
+    fio + " #{email}"
+  end
+
 end
 

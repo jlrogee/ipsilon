@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :solution do
-    description { Faker::Lorem.paragraphs(paragraph_count = 3, supplemental = false) }
+    description { Faker::Lorem.paragraphs }
   end
 end
