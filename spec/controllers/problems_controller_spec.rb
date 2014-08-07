@@ -71,7 +71,7 @@ RSpec.describe ProblemsController, :type => :controller do
         end
       end
     end
-<<<<<<< HEAD
+
     describe "Get #edit" do
       it "assigns the requested organization to subject" do
         get :edit, id: subject
@@ -83,8 +83,6 @@ RSpec.describe ProblemsController, :type => :controller do
         expect(response).to render_template :edit
       end
     end
-=======
 
->>>>>>> 879b21f1dfd966d1a7e63770b185a29a750462c1
   end
 end
