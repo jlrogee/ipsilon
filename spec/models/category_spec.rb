@@ -6,5 +6,10 @@ RSpec.describe Category, :type => :model do
 
   it "should create factory" do
     expect(FactoryGirl.build(:category)).to be_valid
+
   end
+
+  it { is_expected.to validate_presence_of(:catname) }
+  it { is_expected.to validate_presence_of(:description) }
+
 end
