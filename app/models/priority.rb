@@ -8,6 +8,7 @@ class Priority < ActiveRecord::Base
   end
 
   def to_i
-    "#{days_to_close}"
+    days_to_close
   end
+
 end

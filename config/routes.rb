@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :assets
   resources :organizations
   resources :categories
-
+  resources :uploads
   get 'search/:name' => 'search#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

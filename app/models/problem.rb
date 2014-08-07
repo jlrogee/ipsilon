@@ -8,7 +8,8 @@ class Problem < ActiveRecord::Base
   has_many :uploads, :as => :attachable
   has_many :solutions
 
-  accepts_nested_attributes_for :solutions, :uploads
+  accepts_nested_attributes_for :solutions
+  accepts_nested_attributes_for :uploads
 
   self.inheritance_column = :_type_disabled
 
@@ -43,6 +44,11 @@ class Problem < ActiveRecord::Base
   end
 
   def assigned
-    performer_user_id ? User.find(performer_user_id).to_s : ""
+    performer_user_id ? performer_user : "------"
   end
+
+  def datex
+    priority ? (Date.today + priority.to_i) : Date.today
+  end
+
 end
