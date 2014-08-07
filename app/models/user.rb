@@ -23,10 +23,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   accepts_nested_attributes_for :uploads
+  self.per_page = 10
 
   validates_acceptance_of :agree, :on => :create
+  validates :role, presence: true, inclusion: %w(user admin spec dispatcher)
 
-  self.per_page = 10
+
 
   scope :search, -> (query) {where("email like ? OR firstname like ? OR lastname like ? OR phone like ?",
                                   "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")}

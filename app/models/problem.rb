@@ -1,10 +1,10 @@
 class Problem < ActiveRecord::Base
+
   belongs_to :create_user, foreign_key: :create_user_id, class_name: User
   belongs_to :performer_user, foreign_key: :performer_user_id, class_name: User
   belongs_to :last_update_user, foreign_key: :last_update_user_id, class_name: User
   belongs_to :priority, foreign_key: :priority_id, class_name: Priority
   belongs_to :category, foreign_key: :category_id, class_name: Category
-  validates :description, presence: true
   has_many :uploads, :as => :attachable
   has_many :solutions
 
@@ -36,6 +36,8 @@ class Problem < ActiveRecord::Base
   end
 
   scope :search, -> (query) {where("description like ? ", "%#{query}%")}
+
+  validates :description, :category, presence: true
 
   self.per_page = 10
 

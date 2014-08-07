@@ -46,12 +46,12 @@ RSpec.describe ProblemsController, :type => :controller do
       context "with valid attributes" do
         it "creates new object" do
           expect{
-            post :create, problem: FactoryGirl.attributes_for(:problem)
+            post :create, problem: (FactoryGirl.build :problem).attributes.symbolize_keys#FactoryGirl.attributes_for(:problem)
           }.to change(Problem, :count).by(1)
         end
 
         it "redirects to index path" do
-          post :create, problem: FactoryGirl.attributes_for(:problem)
+          post :create, problem: (FactoryGirl.build :problem).attributes.symbolize_keys#FactoryGirl.attributes_for(:problem)
           expect(response).to redirect_to problems_path
         end
       end
@@ -71,6 +71,7 @@ RSpec.describe ProblemsController, :type => :controller do
         end
       end
     end
+<<<<<<< HEAD
     describe "Get #edit" do
       it "assigns the requested organization to subject" do
         get :edit, id: subject
@@ -82,5 +83,8 @@ RSpec.describe ProblemsController, :type => :controller do
         expect(response).to render_template :edit
       end
     end
+=======
+
+>>>>>>> 879b21f1dfd966d1a7e63770b185a29a750462c1
   end
 end
