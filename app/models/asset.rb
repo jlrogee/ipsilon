@@ -3,8 +3,7 @@ class Asset < ActiveRecord::Base
   belongs_to  :user
 
   validates :name, :account_number, presence: true, length: { maximum: 255 }
-
-  validates_associated :organization, :user
+  validates_associated :organization, :user, allow_nil: true
 
   extend Enumerize
   enumerize :type, in: { hardware: 1, software: 2 }

@@ -4,8 +4,7 @@ class Upload < ActiveRecord::Base
 
   validates :avatar, presence: true
   validates_presence_of :avatar
-
-  #validates_associated :attachable
+  validates_associated :attachable, allow_nil: true
 
   mount_uploader :avatar, AvatarUploader
 

@@ -27,8 +27,8 @@ class User < ActiveRecord::Base
 
   validates_acceptance_of :agree, :on => :create
   validates :role, presence: true, inclusion: %w(user admin spec dispatcher)
-
-
+  validates_associated :uploads, :create_kb, :update_kb, :create_pb, :update_pb, :solutions, :departament, :asset,
+                       allow_nil: true, allow_blank: true
 
   scope :search, -> (query) {where("email like ? OR firstname like ? OR lastname like ? OR phone like ?",
                                   "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")}

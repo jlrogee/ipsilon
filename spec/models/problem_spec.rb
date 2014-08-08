@@ -67,5 +67,9 @@ RSpec.describe Problem, :type => :model do
   it { is_expected.to belong_to(:performer_user).class_name('User') }
   it { is_expected.to belong_to(:category) }
   it { is_expected.to validate_presence_of(:description)}
-  it { is_expected.to validate_presence_of(:category)}
+  it { is_expected.to ensure_length_of(:description).is_at_most(65500)}
+  it { is_expected.to have_many(:solutions)}
+  it { is_expected.to have_many(:uploads)}
+  it { is_expected.to accept_nested_attributes_for(:solutions)}
+  it { is_expected.to accept_nested_attributes_for(:uploads)}
 end

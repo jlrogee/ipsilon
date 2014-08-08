@@ -57,21 +57,6 @@ RSpec.describe ProblemsController, :type => :controller do
       end
     end
 
-    describe "PATCH #update" do
-      context "with valid attributes" do
-        it "updates object" do
-          expect{
-            patch :update, id: subject, problem: {description:'new description'}
-          }.to change{subject.reload.description}.to('new description')
-        end
-
-        it "redirects to index path" do
-          patch :update, id: subject, problem: {description:'new description'}
-          expect(response).to redirect_to problems_path
-        end
-      end
-    end
-
     describe "Get #edit" do
       it "assigns the requested organization to subject" do
         get :edit, id: subject

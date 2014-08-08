@@ -4,6 +4,7 @@ class Category < ActiveRecord::Base
 
   validates :catname, :description, presence: true, length: { maximum: 100 }
   validates :description, presence: true
+  validates_associated :problems
 
   self.per_page = 10
 
