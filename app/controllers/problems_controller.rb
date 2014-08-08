@@ -16,19 +16,25 @@ class ProblemsController < ApplicationController
   end
 
   def new
+    @problem = Problem.new
+    @upload = @problem.uploads.build
   end
 
   def create
     @problem = current_user.create_pb.new(problem_params)
-    if @problem.save
-      redirect_to problems_path
-    else
-      render :new
-    end
+
+      if @problem.save
+        @upload = @problem.uploads.create!(:avatar => params[:uploads]['avatar']) if params[:uploads]
+        redirect_to problems_path
+      else
+        render :new
+      end
+
   end
 
   def edit
     find_by_id.solutions.build
+    @problem_attach = @problem.uploads.all
   end
 
   def update
@@ -61,6 +67,7 @@ class ProblemsController < ApplicationController
 
     def find_by_id
       @problem = Problem.find(params[:id])
+
     end
 
 end

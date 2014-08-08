@@ -4,5 +4,7 @@ h3 New Problem
     = simple_form_for @problem, :html => {:multipart => true} do |f|
       = f.input :description, :as => :text
       = f.association :category
+      = f.fields_for :uploads do |p|
+        = p.file_field :avatar, name: "uploads[avatar]"
       = f.submit "Save", :class => 'button tiny radius'
 

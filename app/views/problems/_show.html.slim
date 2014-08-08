@@ -20,5 +20,10 @@ fieldset
     = @problem.created_at
     b &nbsp; Priority: &nbsp;
     = @problem.priority
+  p
+  .p
+    b Attachments: &nbsp;
+    - @problem_attach.each do |p|
+      = link_to Pathname(p.avatar.url).basename, p.avatar.url
 
 
