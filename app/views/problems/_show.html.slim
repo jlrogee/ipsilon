@@ -23,7 +23,8 @@ fieldset
   p
   .p
     b Attachments: &nbsp;
-    - @problem_attach.each do |p|
-      = link_to Pathname(p.avatar.url).basename, p.avatar.url
+    - if @problem_attach
+      - @problem_attach.each do |p|
+        = link_to Pathname(p.avatar.url).basename, p.avatar.url
 
 
