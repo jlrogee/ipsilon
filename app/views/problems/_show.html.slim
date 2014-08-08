@@ -2,7 +2,6 @@ fieldset
   legend Description
   = @problem.description
   hr
-  p
   .p
     b State: &nbsp;
     = @problem.state.to_s
@@ -10,7 +9,6 @@ fieldset
     = @problem.assigned
     b &nbsp; Planned date of meeting: &nbsp;
     = @problem.datex
-  p
   .p
     b Create User: &nbsp;
     = @problem.create_user
@@ -20,7 +18,9 @@ fieldset
     = @problem.created_at
     b &nbsp; Priority: &nbsp;
     = @problem.priority
-  p
+  .p
+    b Asset: &nbsp;
+    = @problem.asset
   .p
     b Attachments: &nbsp;
     - if @problem_attach

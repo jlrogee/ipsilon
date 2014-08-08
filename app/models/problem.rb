@@ -7,7 +7,7 @@ class Problem < ActiveRecord::Base
   belongs_to :category, foreign_key: :category_id, class_name: Category
   has_many :uploads, :as => :attachable
   has_many :solutions
-
+  belongs_to :asset
   accepts_nested_attributes_for :solutions
   accepts_nested_attributes_for :uploads
 
@@ -37,9 +37,9 @@ class Problem < ActiveRecord::Base
       transition [:returned, :done, :dispath] => :closed
     end
   end
-
+  default_scope {order("updated_at DESC")}
   scope :search, -> (query) {where("description like ? ", "%#{query}%")}
-
+  scope :ind, -> (query) {where("create_user_id = ? OR performer_user_id = ?", "%#{query}%", "%#{query}%")}
   self.per_page = 10
 
   def show_id

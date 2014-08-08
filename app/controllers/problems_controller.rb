@@ -8,7 +8,7 @@ class ProblemsController < ApplicationController
     if can? :create, current_user
       @problems = Problem.includes(:create_user, :category, :solutions, :priority).paginate(:page => params[:page])
     else
-      @problems = Problem.where("create_user_id = ? OR performer_user_id = ?", current_user.id, current_user.id).paginate(:page => params[:page])
+      @problems = Problem.ind(current_user.id).paginate(:page => params[:page])
     end
   end
 
@@ -54,10 +54,10 @@ class ProblemsController < ApplicationController
     def problem_params
       if current_user.role.admin? || current_user.role.dispatcher?
         params.require(:problem).permit(:description, :category_id, :state, :priority_id, :performer_user_id, :last_update_user_id,
-                                        :create_user_id, :last_update_user_id, :state_event,
+                                        :create_user_id, :last_update_user_id, :state_event,  :asset_id,
                                         solutions_attributes: solution_params)
       else
-        params.require(:problem).permit(:description, :category_id, :state, :create_user_id, :last_update_user_id,
+        params.require(:problem).permit(:description, :category_id, :state, :create_user_id, :last_update_user_id,  :asset_id,
                                         :last_update_user_id, solutions_attributes: solution_params)
       end
 
