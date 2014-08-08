@@ -35,11 +35,13 @@ class ProblemsController < ApplicationController
   def edit
     find_by_id.solutions.build
     @problem_attach = @problem.uploads.all
+    @upattach = @problem.uploads.build
   end
 
   def update
     @problem.last_update_user = current_user
     if @problem.update(problem_params)
+      @upattach = @problem.uploads.create!(:avatar => params[:uploads]['avatar']) if params[:uploads]
       redirect_to problems_path
     else
       render :edit
