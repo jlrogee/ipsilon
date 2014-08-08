@@ -6,13 +6,14 @@ class Problem < ActiveRecord::Base
   belongs_to :priority, foreign_key: :priority_id, class_name: Priority
   belongs_to :category, foreign_key: :category_id, class_name: Category
   has_many :uploads, :as => :attachable
-  has_many :solutions, class_name: Solution
+  has_many :solutions
 
   accepts_nested_attributes_for :solutions
   accepts_nested_attributes_for :uploads
 
   validates :description, presence: true, length: {maximum: 65500}
-  validates_associated  :create_user, :performer_user, :last_update_user, :priority, :category, :solutions, :uploads, allow_nil: true
+  validates_associated :solutions
+
   self.inheritance_column = :_type_disabled
 
   state_machine :state, :initial => :new do

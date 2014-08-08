@@ -11,5 +11,8 @@ RSpec.describe Organization, :type => :model do
   it {is_expected.to validate_presence_of(:orgname)}
   it {is_expected.to validate_presence_of(:country)}
   it {is_expected.to validate_presence_of(:address)}
-  it {is_expected.to validate_numericality_of(:zipcode)}
+  it { is_expected.to ensure_length_of(:country).is_at_most(250)}
+  it { is_expected.to ensure_length_of(:address).is_at_most(250)}
+  it { is_expected.to ensure_length_of(:orgname).is_at_most(100)}
+  it { is_expected.to ensure_length_of(:phone).is_at_most(18)}
 end

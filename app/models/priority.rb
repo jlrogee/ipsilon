@@ -4,7 +4,8 @@ class Priority < ActiveRecord::Base
   self.per_page = 10
 
   validates :prname, presence: true, length: {minimum: 2}
-  validates_associated :problems
+  validates :days_to_close, presence: true, numericality: true
+
   def to_s
     "#{prname}"
   end

@@ -5,10 +5,11 @@ class Departament < ActiveRecord::Base
   attr_reader :addr
 
   validates :adress, :city, :country, length: { maximum: 250 }
-  validates :depname, presence: true, length: { maximum: 250}
+  validates :depname, presence: true, length: { maximum: 100 }
+  validates :organization_id, presence: true
   validates :phone, length: { maximum: 18 }, format: { with: /\((\+\d{1,2}\s)?(\d{3})\)?(\d{3})[.-](\d{4})/,
                                                        message: "Phone number format - +XX(XXX)XXX-XXXX or +x(xxx)xxx-xxxxx" },
-            on: :create, allow_nil: true
+            on: [:create, :update], allow_nil: true
 
 
   self.per_page = 10

@@ -27,5 +27,7 @@ RSpec.describe KnowledgeBase, :type => :model do
   it { is_expected.to ensure_length_of(:description).is_at_most(65500)}
   it { is_expected.to ensure_length_of(:instruction).is_at_most(65500)}
   it { is_expected.to validate_presence_of(:kbname) }
+  it { is_expected.to validate_presence_of(:instruction) }
+  it { is_expected.to validate_presence_of(:description) }
   it { is_expected.to validate_uniqueness_of(:kbname) }
 end

@@ -11,5 +11,7 @@ RSpec.describe Category, :type => :model do
 
   it { is_expected.to validate_presence_of(:catname) }
   it { is_expected.to validate_presence_of(:description) }
+  it { is_expected.to ensure_length_of(:catname).is_at_most(100)}
+  it { is_expected.to ensure_length_of(:description).is_at_most(250)}
 
 end
