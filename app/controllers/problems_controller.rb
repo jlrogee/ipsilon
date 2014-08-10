@@ -6,10 +6,24 @@ class ProblemsController < ApplicationController
 
   def index
     if can? :create, current_user
-      @problems = Problem.includes(:create_user, :category, :solutions, :priority).paginate(:page => params[:page])
+      @problems = Problem.start.includes(:create_user, :category, :solutions, :priority).paginate(:page => params[:page])
     else
       @problems = Problem.ind(current_user.id).paginate(:page => params[:page])
     end
+  end
+
+  def filter
+    if params[:sort] == "any" && ( current_user.role.admin? || current_user.role.dispatcher?)
+      @problems = Problem.all_problem_adm.paginate(:page => params[:page])
+    elsif current_user.role.admin? || current_user.role.dispatcher?
+      @problems = Problem.filter_admin(params[:sort]).paginate(:page => params[:page])
+    elsif params[:sort] == "any"
+      @problems = Problem.all_problem(current_user.id).paginate(:page => params[:page])
+    else
+      @problems = Problem.filter(params[:sort], current_user.id).paginate(:page => params[:page])
+    end
+
+    render 'index'
   end
 
   def show
@@ -42,6 +56,7 @@ class ProblemsController < ApplicationController
     @problem.last_update_user = current_user
     if @problem.update(problem_params)
       @upattach = @problem.uploads.create!(:avatar => params[:uploads]['avatar']) if params[:uploads]
+      Notifier.change_state_problem(@problem).deliver
       redirect_to problems_path
     else
       render :edit

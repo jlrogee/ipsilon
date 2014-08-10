@@ -6,10 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 unless User.any?
-  User.create(email: "admin@admin.org", password: "IpsilonA", role: "admin", agree: "1")
-  User.create(email: "user@admin.org", password: "IpsilonU", role: "user", agree: "1")
-  User.create(email: "spec@admin.org", password: "IpsilonS", role: "spec", agree: "1")
-  User.create(email: "dispather@admin.org", password: "IpsilonD", role: "dispatcher", agree: "1")
+  User.create(email: "test1@vicpo.kz", password: "IpsilonA", role: "admin", agree: "1", firstname: "User")
+  User.create(email: "test@vicpo.kz", password: "IpsilonU", role: "user", agree: "1", firstname: "Admin")
+  User.create(email: "test2@vicpo.kz", password: "IpsilonS", role: "spec", agree: "1", firstname: "Spec")
+  User.create(email: "test3@vicpo.kz", password: "IpsilonD", role: "dispatcher", agree: "1", firstname: "Dispatcher")
 end
 unless Priority.any?
   Priority.create(prname: "Very Low", days_to_close: 7)
