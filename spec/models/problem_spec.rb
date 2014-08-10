@@ -13,15 +13,12 @@ RSpec.describe Problem, :type => :model do
   before :all do
     @problem = FactoryGirl.build(:problem)
   end
-  it '#switch_to_w changes state to work from new, returned, dispath, closed and done' do
+  it '#switch_to_w changes state to work from new, dispatch, closed and done' do
     @problem.state = 'new'
     expect { @problem.send("switch_to_w") }.to change(@problem, :state).from('new').to('work')
 
-    @problem.state = 'returned'
-    expect { @problem.send("switch_to_w") }.to change(@problem, :state).from('returned').to('work')
-
-    @problem.state = 'dispath'
-    expect { @problem.send("switch_to_w") }.to change(@problem, :state).from('dispath').to('work')
+    @problem.state = 'dispatch'
+    expect { @problem.send("switch_to_w") }.to change(@problem, :state).from('dispatch').to('work')
 
     @problem.state = 'done'
     expect { @problem.send("switch_to_w") }.to change(@problem, :state).from('done').to('work')
@@ -30,36 +27,22 @@ RSpec.describe Problem, :type => :model do
     expect { @problem.send("switch_to_w") }.to change(@problem, :state).from('closed').to('work')
   end
 
-  it '#switch_to_r changes state to returned from work and dispath' do
-    @problem.state = "work"
-    expect { @problem.send("switch_to_r") }.to change(@problem, :state).from('work').to('returned')
-
-    @problem.state = 'dispath'
-    expect { @problem.send("switch_to_r") }.to change(@problem, :state).from('dispath').to('returned')
-  end
-
-  it '#switch_to_d changes state to dispath from work and returned' do
+  it '#switch_to_d changes state to dispatch from work' do
     @problem.state = 'work'
-    expect { @problem.send("switch_to_d") }.to change(@problem, :state).from('work').to('dispath')
-
-    @problem.state = 'returned'
-    expect { @problem.send("switch_to_d") }.to change(@problem, :state).from('returned').to('dispath')
-  end
+    expect { @problem.send("switch_to_d") }.to change(@problem, :state).from('work').to('dispatch')
+ end
 
   it '#switch_to_dn changes state work to done' do
     @problem.state = "work"
     expect { @problem.send("switch_to_dn") }.to change(@problem, :state).from('work').to('done')
   end
 
-  it '#switch_to_c changes state to closed from returned, done and dispath' do
-    @problem.state = 'returned'
-    expect { @problem.send("switch_to_c") }.to change(@problem, :state).from('returned').to('closed')
-
+  it '#switch_to_c changes state to closed from done and dispatch' do
     @problem.state = 'done'
     expect { @problem.send("switch_to_c") }.to change(@problem, :state).from('done').to('closed')
 
-    @problem.state = 'dispath'
-    expect { @problem.send("switch_to_c") }.to change(@problem, :state).from('dispath').to('closed')
+    @problem.state = 'dispatch'
+    expect { @problem.send("switch_to_c") }.to change(@problem, :state).from('dispatch').to('closed')
   end
 
   it { is_expected.to belong_to(:create_user).class_name('User') }
