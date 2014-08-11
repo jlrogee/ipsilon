@@ -44,6 +44,19 @@ class DepartamentsController < ApplicationController
     @departament = Departament.new
   end
 
+  searchable do
+    text :depname, :adress, :phone, :city, :country
+
+    integer :zipcode
+    integer :organization_id
+    time    :created_at
+    time    :updated_at
+
+    string  :sort_depname do
+      depname.downcase.gsub(/^(an?|the)/, '')
+    end
+  end
+
   private
 
     def find_by_id

@@ -15,4 +15,9 @@ class RegistrationsController < Devise::RegistrationsController
                                    :current_password, :uploads)
     end
   end
+
+  searchable do
+    text :user
+  end
+
 end

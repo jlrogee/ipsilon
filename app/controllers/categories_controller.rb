@@ -44,6 +44,17 @@ class CategoriesController < ApplicationController
     @category = Category.new
   end
 
+  searchable do
+    text :catname, :description
+
+    time    :created_at
+    time    :updated_at
+
+    string  :sort_catname do
+      catname.downcase.gsub(/^(an?|the)/, '')
+    end
+  end
+
   private
 
     def find_by_id

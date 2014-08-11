@@ -16,8 +16,21 @@ class KnowledgeBase < ActiveRecord::Base
 
   scope :instr, -> { where("type = 1") }
   scope :kb, -> { where("type = 2") }
-  scope :search, -> (query) { where("kbname like ? OR description like ? OR instruction like ?", "%#{query}%", "%#{query}%", "%#{query}%")}
 
   self.inheritance_column = :_type_disabled
   self.per_page = 10
+
+  searchable do
+    text :kbname, :description, :instruction
+
+    integer :type
+    integer :create_user_id
+    time    :created_at
+    time    :updated_at
+
+    string  :sort_kbname do
+      kbname.downcase.gsub(/^(an?|the)/, '')
+    end
+  end
+
 end

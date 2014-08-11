@@ -44,6 +44,20 @@ class AssetsController < ApplicationController
     @asset = Asset.new
   end
 
+  searchable do
+    text :name, :account_number
+
+    integer :type
+    integer :user_id
+    integer :organization_id
+    time    :created_at
+    time    :updated_at
+
+    string  :sort_name do
+      name.downcase.gsub(/^(an?|the)/, '')
+    end
+  end
+
   private
 
     def find_by_id

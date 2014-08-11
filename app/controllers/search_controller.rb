@@ -3,27 +3,52 @@ class SearchController < ApplicationController
   def index
     case
       when params[:name] == "Category"
-        @categories = Category.search(params[:search]).paginate(:page => params[:page])
-        render :template => 'categories/index'
+        @search_res = Category.search do
+          fulltext params[:search]
+          order_by :updated_at
+          paginate :page => params[:page]
+        end
+        @search = @search_res.results
 
       when params[:name] == "Problem"
-        @problems = Problem.search(params[:search]).paginate(:page => params[:page])
-        render :template => 'problems/index'
+        @search_res = Problem.search do
+          fulltext params[:search]
+          order_by :updated_at
+          paginate :page => params[:page]
+        end
+        @search = @search_res.results
 
       when params[:name] == "Departament"
-        @departaments = Departament.search(params[:search]).paginate(:page => params[:page])
-        render :template => 'departaments/index'
+        @search_res = Departament.search do
+          fulltext params[:search]
+          order_by :updated_at
+          paginate :page => params[:page]
+        end
+        @search = @search_res.results
 
       when params[:name] == "Asset"
-        @assets = Asset.search(params[:search]).paginate(:page => params[:page])
-        render :template => 'assets/index'
+        @search_res = Asset.search do
+          fulltext params[:search]
+          order_by :updated_at
+          paginate :page => params[:page]
+        end
+        @search = @search_res.results
 
       when params[:name] == "Registration"
-        @search = User.search(params[:search]).paginate(:page => params[:page])
+        @search_res = Registration.search do
+          fulltext params[:search]
+          order_by :updated_at
+          paginate :page => params[:page]
+        end
+        @search = @search_res.results
 
       when params[:name] == "KnowledgeBase"
-        @search = KnowledgeBase.search(params[:search]).paginate(:page => params[:page])
-        render :template => 'knowledge_bases/search'
+        @search_res = KnowledgeBase.search do
+          fulltext params[:search]
+          order_by :updated_at
+          paginate :page => params[:page]
+        end
+        @search = @search_res.results
 
       else
         render 'error'

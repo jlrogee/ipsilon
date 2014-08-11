@@ -8,20 +8,8 @@
       th Category
       th Created
     tbody
-      - @problems.each do |p|
-        tr
-          td= link_to p.description, edit_problem_path(p)
-          td= p.state
-          td= p.priority
-          td= p.datex
-          td= p.category
-          td
-            - if p.create_user.firstname?
-              = p.create_user.fio
-            - else
-              = p.create_user.email
 
-  = foundation_paginate @problems
+
 
   =link_to 'New problem', new_problem_path, class: 'button tiny radius'
-
+     

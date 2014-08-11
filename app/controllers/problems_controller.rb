@@ -48,6 +48,22 @@ class ProblemsController < ApplicationController
     end
   end
 
+  searchable do
+    text :state, :description
+
+    integer :create_user_id
+    integer :performer_user_id
+    integer :last_update_user_id
+    integer :priority_id
+    integer :category_id
+    integer :asset_id
+    time    :created_at
+    time    :updated_at
+    time    :time_to_close
+    time    :fact_close
+
+  end
+
 
   private
 
