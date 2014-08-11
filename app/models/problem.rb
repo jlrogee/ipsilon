@@ -16,21 +16,20 @@ class Problem < ActiveRecord::Base
 
   self.inheritance_column = :_type_disabled
 
+  extend Enumerize
+  enumerize :qualification, in: { VeryPoor: 1, Poor: 2, Satisfactory: 3, Good: 4, Excellent: 5 }
+
   state_machine :state, :initial => :new do
     event :switch_to_w do
-      transition [:new, :dispatch, :done, :closed] => :work
+      transition [:new, :dispatch, :closed] => :work
     end
 
     event :switch_to_d do
       transition :work => :dispatch
     end
 
-    event :switch_to_dn do
-      transition :work => :done
-    end
-
     event :switch_to_c do
-      transition [:done, :dispatch] => :closed
+      transition [:work, :dispatch] => :closed
     end
   end
 

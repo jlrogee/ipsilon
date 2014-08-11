@@ -20,9 +20,6 @@ RSpec.describe Problem, :type => :model do
     @problem.state = 'dispatch'
     expect { @problem.send("switch_to_w") }.to change(@problem, :state).from('dispatch').to('work')
 
-    @problem.state = 'done'
-    expect { @problem.send("switch_to_w") }.to change(@problem, :state).from('done').to('work')
-
     @problem.state = 'closed'
     expect { @problem.send("switch_to_w") }.to change(@problem, :state).from('closed').to('work')
   end
@@ -30,16 +27,11 @@ RSpec.describe Problem, :type => :model do
   it '#switch_to_d changes state to dispatch from work' do
     @problem.state = 'work'
     expect { @problem.send("switch_to_d") }.to change(@problem, :state).from('work').to('dispatch')
- end
-
-  it '#switch_to_dn changes state work to done' do
-    @problem.state = "work"
-    expect { @problem.send("switch_to_dn") }.to change(@problem, :state).from('work').to('done')
   end
 
-  it '#switch_to_c changes state to closed from done and dispatch' do
-    @problem.state = 'done'
-    expect { @problem.send("switch_to_c") }.to change(@problem, :state).from('done').to('closed')
+  it '#switch_to_c changes state to closed from work and dispatch' do
+    @problem.state = 'work'
+    expect { @problem.send("switch_to_c") }.to change(@problem, :state).from('work').to('closed')
 
     @problem.state = 'dispatch'
     expect { @problem.send("switch_to_c") }.to change(@problem, :state).from('dispatch').to('closed')

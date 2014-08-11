@@ -10,4 +10,13 @@ class Notifier < ActionMailer::Base
     mail(to: resource.create_user.email)
   end
 
+  def send_qualification_request(resource)
+    @resource = resource
+    mail(to: resource.create_user.email)
+  end
+
+  def send_thanks(resource)
+    @resource = resource
+    mail(to: resource.create_user.email)
+  end
 end

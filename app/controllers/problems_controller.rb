@@ -56,24 +56,35 @@ class ProblemsController < ApplicationController
     @problem.last_update_user = current_user
     if @problem.update(problem_params)
       @upattach = @problem.uploads.create!(:avatar => params[:uploads]['avatar']) if params[:uploads]
-      Notifier.change_state_problem(@problem).deliver
+      send_notification(@problem)
       redirect_to problems_path
     else
       render :edit
     end
   end
 
+  def qualification
+  end
 
+  def send_notification(problem)
+    if problem.qualification
+      Notifier.send_thanks(problem).deliver
+    elsif problem.state == 'closed'
+      Notifier.send_qualification_request(problem).deliver
+    else
+      Notifier.change_state_problem(problem).deliver
+    end
+  end
   private
 
     def problem_params
       if current_user.role.admin? || current_user.role.dispatcher?
         params.require(:problem).permit(:description, :category_id, :state, :priority_id, :performer_user_id, :last_update_user_id,
-                                        :create_user_id, :last_update_user_id, :state_event,  :asset_id,
+                                        :create_user_id, :last_update_user_id, :state_event,  :asset_id, :qualification,
                                         solutions_attributes: solution_params)
       else
         params.require(:problem).permit(:description, :category_id, :state, :create_user_id, :last_update_user_id,  :asset_id,
-                                        :last_update_user_id, solutions_attributes: solution_params)
+                                        :last_update_user_id, :qualification, solutions_attributes: solution_params)
       end
 
     end
