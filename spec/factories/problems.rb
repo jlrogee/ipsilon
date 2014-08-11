@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :problem do
-      description { Faker::Lorem.paragraph }
-   end
+    description { Faker::Lorem.paragraph }
+    category { |c| c.association(:category)}
+  end
 end

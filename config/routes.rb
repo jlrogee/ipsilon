@@ -7,9 +7,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'problems#index'
 
-  resources :problems, except: [:destroy, :edit] do
-    resources :solutions, only: [:index, :new, :create]
-  end
+  resources :problems, except: :destroy
   get 'knowledge_bases/kb' => 'knowledge_bases#kb', as: 'kbase'
   get 'knowledge_bases/instr' => 'knowledge_bases#instr', as: 'inst'
   resources :knowledge_bases, except: :index
@@ -19,7 +17,7 @@ Rails.application.routes.draw do
   resources :assets
   resources :organizations
   resources :categories
-
+  resources :uploads
   get 'search/:name' => 'search#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

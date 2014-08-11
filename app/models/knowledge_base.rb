@@ -8,8 +8,8 @@ class KnowledgeBase < ActiveRecord::Base
   accepts_nested_attributes_for :uploads
 
   validates :kbname, presence: true, uniqueness: true, length: { maximum: 250}
-  validates :description, :instruction, length: { maximum: 65535 }
-  validates_associated :create_user, :update_user, :uploads, allow_nil: true
+  validates :description, :instruction, presence: true, length: { maximum: 65500 }
+  validates :type, presence: true
 
   extend Enumerize
   enumerize :type, in: { inst: 1, kb: 2 }

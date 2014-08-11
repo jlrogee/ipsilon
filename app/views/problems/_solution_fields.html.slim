@@ -1,0 +1,6 @@
+.nested-fields
+  = f.input :description, as: :text
+  = f.hidden_field :create_user_id, :value => current_user.id
+  - if @upattach
+    = f.fields_for @upattach do |sup|
+       = sup.file_field :avatar, name: "uploads[avatar]", class:  "upload"

@@ -30,18 +30,6 @@ RSpec.describe ProblemsController, :type => :controller do
       end
     end
 
-    describe "Get #show" do
-      it "assigns the requested problem to subject" do
-        get :show, id: subject
-        expect(assigns(:problem)).to eq(subject)
-      end
-
-      it "renders the :show view" do
-        get :show, id: subject
-        expect(response).to render_template :show
-      end
-    end
-
     describe "Get #new" do
       it "assigns the requested problem to new" do
         get :new
@@ -58,30 +46,28 @@ RSpec.describe ProblemsController, :type => :controller do
       context "with valid attributes" do
         it "creates new object" do
           expect{
-            post :create, problem: FactoryGirl.attributes_for(:problem)
+            post :create, problem: (FactoryGirl.build :problem).attributes.symbolize_keys#FactoryGirl.attributes_for(:problem)
           }.to change(Problem, :count).by(1)
         end
 
         it "redirects to index path" do
-          post :create, problem: FactoryGirl.attributes_for(:problem)
+          post :create, problem: (FactoryGirl.build :problem).attributes.symbolize_keys#FactoryGirl.attributes_for(:problem)
           expect(response).to redirect_to problems_path
         end
       end
     end
 
-    describe "PATCH #update" do
-      context "with valid attributes" do
-        it "updates object" do
-          expect{
-            patch :update, id: subject, problem: {description:'new description'}
-          }.to change{subject.reload.description}.to('new description')
-        end
+    describe "Get #edit" do
+      it "assigns the requested organization to subject" do
+        get :edit, id: subject
+        expect(assigns(:problem)).to eq(subject)
+      end
 
-        it "redirects to index path" do
-          patch :update, id: subject, problem: {description:'new description'}
-          expect(response).to redirect_to problems_path
-        end
+      it "renders the :edit view" do
+        get :edit, id: subject
+        expect(response).to render_template :edit
       end
     end
+
   end
 end

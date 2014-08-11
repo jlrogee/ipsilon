@@ -1,13 +1,19 @@
 .panel
   table width='100%'
     thead
-      th width='25%'= Category.human_attribute_name(:name)
-      th width='75%'= Category.human_attribute_name(:description)
+      th= Category.human_attribute_name(:name)
+      th= Category.human_attribute_name(:description)
+      th Actions
     tbody
       - @knowledge_bases.each do |c|
         tr
           td= link_to c.kbname, knowledge_base_path(c)
           td= c.description
+          td
+            - if can? :manage, current_user
+              = link_to "Edit ", edit_knowledge_base_path(c)
+              | |
+              = link_to " Delete", knowledge_base_path(c), method: :delete, data: {confirm: 'sure?'}
 
   = foundation_paginate @knowledge_bases
 

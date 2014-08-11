@@ -25,10 +25,6 @@ RSpec.describe CategoriesController, :type => :controller do
         expect(response).to render_template :index
       end
 
-      it "assigns the request category to catname" do
-        get :index
-        expect(assigns(:categories)).to eq([subject])
-      end
     end
 
     describe "Get #show" do

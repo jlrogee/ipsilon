@@ -1,0 +1,30 @@
+fieldset
+  legend Description
+  = @problem.description
+  hr
+  .p
+    b State: &nbsp;
+    = @problem.state.to_s
+    b &nbsp; Assigned: &nbsp;
+    = @problem.assigned
+    b &nbsp; Planned date of meeting: &nbsp;
+    = @problem.datex
+  .p
+    b Create User: &nbsp;
+    = @problem.create_user
+    b &nbsp; Category: &nbsp;
+    = @problem.category.to_s
+    b &nbsp; Date created: &nbsp;
+    = @problem.created_at
+    b &nbsp; Priority: &nbsp;
+    = @problem.priority
+  .p
+    b Asset: &nbsp;
+    = @problem.asset
+  .p
+    b Attachments: &nbsp;
+    - if @problem_attach
+      - @problem_attach.each do |p|
+        = link_to Pathname(p.avatar.url).basename, p.avatar.url
+
+

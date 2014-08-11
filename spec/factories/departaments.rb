@@ -8,6 +8,6 @@ FactoryGirl.define do
     city { Faker::Address.city }
     country { Faker::Address.country }
     zipcode { Faker::Address.zip_code }
-
+    organization_id { "1" }
   end
 end

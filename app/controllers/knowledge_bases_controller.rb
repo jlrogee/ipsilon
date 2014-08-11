@@ -55,6 +55,6 @@ class KnowledgeBasesController < ApplicationController
   end
 
   def knowledge_base_params
-    params.require(:knowledge_base).permit(:type, :kbname, :instruction, :description, :search, :create_user_id, :update_user_id)
+    params.require(:knowledge_base).permit(:type, :kbname, :instruction, :description, :search, :create_user_id, :update_user_id, :kb, :instr)
   end
 end

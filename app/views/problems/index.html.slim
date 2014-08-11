@@ -10,10 +10,10 @@
     tbody
       - @problems.each do |p|
         tr
-          td= link_to p.description, problem_path(p)
+          td= link_to p.description, edit_problem_path(p)
           td= p.state
           td= p.priority
-          td= Date.today + (p.priority.try(:days_to_close) || 0)
+          td= p.datex
           td= p.category
           td
             - if p.create_user.firstname?

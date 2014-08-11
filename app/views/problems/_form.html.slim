@@ -1,12 +1,15 @@
-.newform
-  = simple_form_for @problem do |f|
-    p Problem
-    = f.label :description
-    = f.input_field :description
-    -unless @problem.new_record?
-      = f.label :state
-      = f.collection_select :state_event, @problem.state_transitions, :human_to_name, :human_to_name, :include_blank => @problem.human_state_name
-    = f.association :category
-    = f.association :priority
-    = f.submit "Save", :class => 'button tiny radius'
+h3 New Problem
+.panel
+  .newform
+    = simple_form_for @problem, :html => {:multipart => true} do |f|
+      = f.input :description, :as => :text
+      = f.association :category
+      - if current_user.assets
+        = f.label :asset, "Asset"
+        = f.collection_select :asset_id,  current_user.assets, :id, :name
+      = f.fields_for :uploads do |p|
+        = p.label :avatar, "Attachment"
+        = p.file_field :avatar, name: "uploads[avatar]"
+
+      = f.submit "Save", :class => 'button tiny radius'
 

@@ -1,11 +1,7 @@
 .newform
-  = form_for @knowledge_base do |f|
-    = f.label :kbname, "Name"
-    = f.text_field :kbname
-    = f.label :description
-    = f.text_field :description
-    = f.label :insruction
-    = f.text_area :instruction
-    = f.label :type, "Type Knowledge"
-    = f.select :type, KnowledgeBase.type.options
+  = simple_form_for @knowledge_base do |f|
+    = f.input :kbname, :label => "Name"
+    = f.input :description
+    = f.input :instruction, as: :text
+    = f.input :type, :label => "Type Knowledge"
     = f.submit "Save", :class => 'button tiny radius right'

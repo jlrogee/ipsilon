@@ -79,7 +79,4 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: ipsilon_production
-  username: postgres
-  password: <%= ENV['POPOV_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>

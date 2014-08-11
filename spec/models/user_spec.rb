@@ -14,6 +14,10 @@ RSpec.describe User, :type => :model do
     expect(FactoryGirl.build(:user)).to be_valid
   end
 
+  it {is_expected.to validate_presence_of(:role)}
+  it {is_expected.to ensure_inclusion_of(:role).in_array(%w(user admin spec dispatcher))}
+  it {should validate_acceptance_of :agree }
+
   let(:user) { FactoryGirl.create :user, role: :user }
   let(:user) { FactoryGirl.create :user, role: :spec }
   let(:user) { FactoryGirl.create :user, role: :dispatcher }
