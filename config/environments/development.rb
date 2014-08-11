@@ -41,8 +41,8 @@ Rails.application.configure do
       address:      "smtp.yandex.ru",
       port: 25,
       domain:       "vicpo.kz",
-      user_name:    "noreply@vicpo.kz",
-      password:     "W3CXXz",
+      user_name:    ENV['USER_MAIL'],
+      password:     ENV['PASSWORD_MAIL'],
       enable_starttls_auto: false,
       authentication: "plain"
   }
