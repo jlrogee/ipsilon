@@ -21,7 +21,7 @@ class Problem < ActiveRecord::Base
 
   state_machine :state, :initial => :new do
     event :switch_to_w do
-      transition [:new, :dispatch, :closed] => :work
+      transition [:new, :dispatch] => :work
     end
 
     event :switch_to_d do
