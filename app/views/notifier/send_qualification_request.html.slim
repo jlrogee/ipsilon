@@ -1,0 +1,5 @@
+p Hi #{@resource.create_user.email}
+p The status of your problem #{@resource.show_id} has changed
+p State #{@resource.state}
+p Please rate the quality of work!
+p= link_to @resource.show_id, problem_qualification_url(@resource)

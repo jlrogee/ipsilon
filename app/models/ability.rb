@@ -5,6 +5,7 @@ class Ability
 
     user ||= User.new
     can [:kb, :instr], KnowledgeBase
+    can :filter, Problem
     if user.role.admin? || user.role.dispatcher?
       can :manage, :all
     elsif user.role.user? || user.role.spec?

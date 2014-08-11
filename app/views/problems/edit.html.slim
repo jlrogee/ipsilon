@@ -3,15 +3,20 @@ h3 = @problem.show_id
   = render 'show'
   - @problem.solutions.each do |sol_field|
     = render 'show_solutions', :f => sol_field unless sol_field.new_record?
-.newform
-  = simple_nested_form_for @problem do |f|
-    - if current_user.role.dispatcher? || @problem.performer_user == current_user || current_user.role.admin?
-      = f.label :state
-      = f.collection_select :state_event, @problem.state_transitions, :event, :human_to_name, :include_blank => @problem.human_state_name
-    = f.association :category
-    = f.fields_for :solutions do |solution_form|
-      = render 'solution_fields', :f => solution_form if solution_form.object.new_record?
-    - if current_user.role.admin? || current_user.role.dispatcher?
-      = f.association :performer_user
-      = f.association :priority
-    = f.submit "Save", :class => 'button tiny radius'
+- unless @problem.qualification
+  .newform
+    = simple_nested_form_for @problem do |f|
+      - if current_user.role.dispatcher? || @problem.performer_user == current_user || current_user.role.admin? || @problem.state == 'done'
+        = f.label :state
+        = f.collection_select :state_event, @problem.state_transitions, :event, :human_to_name, :include_blank => @problem.human_state_name
+      = f.association :category
+      = f.fields_for :solutions do |solution_form|
+        = render 'solution_fields', :f => solution_form if solution_form.object.new_record?
+      - if current_user.role.admin? || current_user.role.dispatcher?
+        = f.association :performer_user
+        = f.association :priority
+      = f.submit "Save", :class => 'button tiny radius'
+- else
+  p
+    b This problem is closed.
+  p= "Qualification: <b>#{@problem.qualification}</b>".html_safe

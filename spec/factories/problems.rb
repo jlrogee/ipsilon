@@ -4,5 +4,6 @@ FactoryGirl.define do
   factory :problem do
     description { Faker::Lorem.paragraph }
     category { |c| c.association(:category)}
+    create_user_id { 1 }
   end
 end

@@ -1,3 +1,11 @@
+- filter_problem = ["any", "work", "new", "dispatcher", "closed"]
+dl.sub-nav
+  dt Filter:
+  - filter_problem.each do |i|
+    -if params[:sort] == i
+      dd.active= link_to i.capitalize, problems_filter_path(sort: i)
+    - else
+      dd= link_to i.capitalize, problems_filter_path(sort: i)
 .panel
   table width='100%'
     thead

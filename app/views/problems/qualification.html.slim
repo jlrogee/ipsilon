@@ -1,0 +1,9 @@
+h3 Qualification
+p Please rate the quality of work!
+.newform
+  - if @problem.state == 'closed'
+    = simple_form_for @problem do |f|
+      = f.input :qualification
+      = f.submit "Save", :class => 'button tiny radius'
+  -else
+    p This problem is not closed.
