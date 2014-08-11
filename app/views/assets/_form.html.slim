@@ -1,5 +1,5 @@
 .newform
-  = simple_form_for [@user, @asset] do |f|
+  = simple_form_for @asset do |f|
     = f.input :name
     = f.input :type
     = f.association :organization
