@@ -4,6 +4,6 @@ fieldset
   p
   .p
     b Answered: &nbsp;
-    = f.create_user
+    = link_to f.create_user, user_url(f.create_user) if f.create_user
     b &nbsp; Date of reply: &nbsp
     = f.created_at
