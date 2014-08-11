@@ -1,0 +1,25 @@
+.authform
+  h3
+    | Edit User
+  = simple_form_for @user  do |f|
+    .form-group
+      = f.label :email
+      = f.email_field :email, :autofocus => true, class: 'form-control'
+      = f.label :firstname, 'First name'
+      = f.text_field :firstname, class: 'form-control'
+      = f.label :lastname , 'Last name'
+      = f.text_field :lastname, class: 'form-control'
+      = f.label :phone , 'Phone number'
+      = f.text_field :phone, class: 'form-control'
+
+      - if current_user.role.admin? || current_user.role.dispatcher?
+        = f.label :role, "Role"
+        = f.select :role, User.role.options
+        = f.label :departament
+        = f.collection_select :departament, Departament.all, :id, :to_s
+      - else
+        = f.label :role, "Role"
+        = f.text_field :role, :value => current_user.role, disabled: true
+        = f.label :departament
+        = f.text_field :departament, :value => current_user.departament, disabled: true
+    = f.submit 'Update', :class => 'button right tiny radius'

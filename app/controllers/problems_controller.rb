@@ -8,7 +8,7 @@ class ProblemsController < ApplicationController
     if can? :create, current_user
       @problems = Problem.includes(:create_user, :category, :solutions, :priority).paginate(:page => params[:page])
     else
-      @problems = Problem.ind(current_user.id).paginate(:page => params[:page])
+      @problems = Problem.where(create_user: current_user.id).paginate(:page => params[:page])
     end
   end
 
