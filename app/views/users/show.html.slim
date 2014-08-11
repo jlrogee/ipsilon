@@ -1,0 +1,31 @@
+.panel
+  table width='100%'
+    tbody
+      -@user.attributes.each do |attr|
+
+      tr
+        td= User.human_attribute_name(:email)
+        td= @user.email
+      tr
+        td= User.human_attribute_name(:firstname)
+        td= @user.firstname
+      tr
+        td= User.human_attribute_name(:lastname)
+        td= @user.lastname
+      tr
+        td= User.human_attribute_name(:phone)
+        td= @user.phone
+      tr
+        td= User.human_attribute_name(:role)
+        td= @user.role
+      tr
+        td= User.human_attribute_name(:phone)
+        td= @user.phone
+      tr
+        td= User.human_attribute_name(:departament)
+        td= @user.departament
+  - if current_user == @user
+    = link_to 'Edit', edit_user_registration_path(), class: 'button tiny radius'
+  - else
+    - if current_user.role.admin? || current_user.role.dispatcher?
+      = link_to 'Edit', edit_user_path(@user), class: 'button tiny radius'

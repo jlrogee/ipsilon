@@ -1,0 +1,21 @@
+.panel
+  table width='100%'
+    thead
+      th Login/Email
+      th Firstname
+      th Lastname
+      th Role
+      th Actions
+    tbody
+      - @users.each do |u|
+        tr
+          td =link_to u.email, user_path(u)
+          td= u.firstname
+          td= u.lastname
+          td= u.role
+          td
+            - if current_user.role.admin? || current_user.role.dispatcher?
+              =link_to 'Edit', edit_user_path(u)
+              |  |
+              =link_to  'Delete', user_path(u), method: :delete, data: {confirm: 'sure?'}
+

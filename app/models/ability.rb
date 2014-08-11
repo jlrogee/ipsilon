@@ -9,7 +9,7 @@ class Ability
       can :manage, :all
     elsif user.role.user? || user.role.spec?
       can :read,  :all
-      can :update, User
+      can :update, User, :id => user.id
 
     end
     can :manage, Problem
