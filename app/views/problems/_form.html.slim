@@ -11,5 +11,7 @@ h3 New Problem
         = p.label :avatar, "Attachment"
         = p.file_field :avatar, name: "uploads[avatar]"
 
-      = f.submit "Save", :class => 'button tiny radius'
+      = f.submit "Save", :class => 'button tiny radius', data: {confirm: { title: 'Are you sure?',
+                                                            body: 'You have searched for answers in the knowledge base?',
+                                                            ok: 'Yes! Save.', cancel: 'No!' }.to_json   }
 
