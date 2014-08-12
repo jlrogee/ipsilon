@@ -55,7 +55,9 @@ class Problem < ActiveRecord::Base
   end
 
   def datex
-    priority ? Time.at( created_at.to_time.to_i + (priority.to_i * 86400) ).strftime("%Y-%m-%d"): created_at.strftime("%Y-%m-%d")
+    date_x = created_at
+    date_x += priority.to_i.days if priority
+    date_x.strftime("%Y-%m-%d")
   end
 
 end
