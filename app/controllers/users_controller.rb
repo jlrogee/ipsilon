@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    #redirect_to users_path if @user != current_user
   end
 
   def edit
