@@ -25,9 +25,9 @@ dl.sub-nav
           td= truncate(p.category, length: 40)
           td
             - if p.create_user.firstname?
-              = p.create_user.fio
+              = truncate(p.create_user.fio, length: 50)
             - else
-              = p.create_user.email
+              = truncate(p.create_user.email, length: 50)
 
   = foundation_paginate @problems
 
