@@ -22,7 +22,7 @@ dl.sub-nav
           td= p.state
           td= p.priority
           td= p.datex
-          td= p.category
+          td= truncate(p.category, length: 40)
           td
             - if p.create_user.firstname?
               = p.create_user.fio
