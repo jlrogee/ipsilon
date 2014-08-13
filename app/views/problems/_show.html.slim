@@ -6,12 +6,13 @@ fieldset
     b State: &nbsp;
     = @problem.state.to_s
     b &nbsp; Assigned: &nbsp;
-    = @problem.assigned
+    = link_to @problem.assigned, user_url(@problem.assigned)  unless @problem.assigned ==  "------"
+    = @problem.assigned if @problem.assigned ==  "------"
     b &nbsp; Planned date of meeting: &nbsp;
     = @problem.datex
   .p
     b Create User: &nbsp;
-    = @problem.create_user
+    = link_to @problem.create_user, user_url(@problem.create_user)
     b &nbsp; Category: &nbsp;
     = @problem.category.to_s
     b &nbsp; Date created: &nbsp;

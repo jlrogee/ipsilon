@@ -18,4 +18,5 @@
 //= require jquery_nested_form
 $(function() {
   $(document).foundation();
+
 });

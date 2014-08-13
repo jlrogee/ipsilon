@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations'}
+  resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'problems#index'
-
+  get 'problems/filter' => 'problems#filter', as: 'problems_filter'
+  get 'problems/qualification/:id' => 'problems#qualification', as: 'problem_qualification'
   resources :problems, except: :destroy
   get 'knowledge_bases/kb' => 'knowledge_bases#kb', as: 'kbase'
   get 'knowledge_bases/instr' => 'knowledge_bases#instr', as: 'inst'
