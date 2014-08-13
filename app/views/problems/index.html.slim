@@ -20,9 +20,9 @@ dl.sub-nav
         tr
           td= link_to truncate(p.description, :length => 20), edit_problem_path(p)
           td= p.state
-          td= p.priority
+          td= truncate(p.priority.to_s, length: 40)
           td= p.datex
-          td= truncate(p.category, length: 40)
+          td= truncate(p.category.to_s, length: 40)
           td
             - if p.create_user.firstname?
               = truncate(p.create_user.fio, length: 50)
