@@ -10,7 +10,7 @@
     tbody
       - @departaments.each do |d|
         tr
-          td= link_to d.depname, departament_path(d)
+          td= link_to truncate(d.depname, length: 40), departament_path(d)
           td= d.organization
           td= d.phone
           td= d.addr

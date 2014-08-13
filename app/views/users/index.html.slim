@@ -1,15 +1,15 @@
 .panel
   table width='100%'
     thead
-      th Login/Email
-      th Firstname
-      th Lastname
-      th Role
-      th Actions
+      th width='25%' Login/Email
+      th width='20%' Firstname
+      th width='20%' Lastname
+      th width='20%' Role
+      th width='15%' Actions
     tbody
       - @users.each do |u|
         tr
-          td =link_to u.email, user_path(u)
+          td =link_to truncate(u.email, length: 40), user_path(u)
           td= u.firstname
           td= u.lastname
           td= u.role

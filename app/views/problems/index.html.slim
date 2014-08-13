@@ -18,7 +18,7 @@ dl.sub-nav
     tbody
       - @problems.each do |p|
         tr
-          td= link_to p.description, edit_problem_path(p)
+          td= link_to truncate(p.description, :length => 20), edit_problem_path(p)
           td= p.state
           td= p.priority
           td= p.datex

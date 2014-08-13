@@ -1,13 +1,13 @@
 .panel
   table width='100%'
     thead
-      th= Category.human_attribute_name(:name)
-      th= Category.human_attribute_name(:description)
-      th Actions
+      th width='25%'= Category.human_attribute_name(:name)
+      th width='65%'= Category.human_attribute_name(:description)
+      th width='10%' Actions
     tbody
       - @knowledge_bases.each do |c|
         tr
-          td= link_to c.kbname, knowledge_base_path(c)
+          td= link_to truncate(c.kbname, length: 40), knowledge_base_path(c)
           td= c.description
           td
             - if can? :manage, current_user
