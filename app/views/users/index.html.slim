@@ -10,9 +10,9 @@
       - @users.each do |u|
         tr
           td =link_to truncate(u.email, length: 40), user_path(u)
-          td= u.firstname
-          td= u.lastname
-          td= u.role
+          td= truncate(u.firstname, length: 40)
+          td= truncate(u.lastname, length: 40)
+          td= truncate(u.role, length: 40)
           td
             - if current_user.role.admin? || current_user.role.dispatcher?
               =link_to 'Edit', edit_user_path(u)

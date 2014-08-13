@@ -12,9 +12,9 @@
       - @organizations.each do |p|
         tr
           td= link_to truncate(p.orgname, length: 40), organization_path(p)
-          td= p.address
+          td= truncate(p.address, length: 40)
           td= p.phone
-          td= p.city
+          td= truncate(p.city, length: 40)
           td= p.zipcode
           td= p.country
           td

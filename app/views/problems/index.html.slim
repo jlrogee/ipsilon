@@ -20,14 +20,14 @@ dl.sub-nav
         tr
           td= link_to truncate(p.description, :length => 20), edit_problem_path(p)
           td= p.state
-          td= p.priority
+          td= truncate(p.priority.to_s, length: 40)
           td= p.datex
-          td= p.category
+          td= truncate(p.category.to_s, length: 40)
           td
             - if p.create_user.firstname?
-              = p.create_user.fio
+              = truncate(p.create_user.fio, length: 50)
             - else
-              = p.create_user.email
+              = truncate(p.create_user.email, length: 50)
 
   = foundation_paginate @problems
 

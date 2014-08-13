@@ -8,8 +8,8 @@
     tbody
       - @search.each do |c|
         tr
-          td= c.firstname
-          td= c.lastname
+          td= truncate(c.firstname, length: 40)
+          td= truncate(c.lastname, length: 40)
           td= link_to c.email, edit_user_registration_path(c)
           td= c.phone
 
