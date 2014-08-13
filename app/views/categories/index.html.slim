@@ -7,7 +7,7 @@
     tbody
       - @categories.each do |c|
         tr
-          td= link_to c.catname, category_path(c)
+          td= link_to truncate(c.catname, length: 40), category_path(c)
           td= c.description
           td
             - if can? :create, current_user

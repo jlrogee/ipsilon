@@ -10,7 +10,7 @@
     tbody
       - @assets.each do |a|
         tr
-          td= link_to a.name, asset_path(a)
+          td= link_to truncate(a.name, length: 40), asset_path(a)
           td= a.type
           td= a.organization
           td= a.account_number

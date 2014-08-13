@@ -1,17 +1,17 @@
 .panel
   table width='100%'
     thead
-      th Name
-      th Address
-      th Phone
-      th City
-      th ZIP
-      th Country
-      th Actions
+      th width='20%' Name
+      th width='25%' Address
+      th width='10%' Phone
+      th width='15%' City
+      th width='5%' ZIP
+      th width='10%' Country
+      th width='15%' Actions
     tbody
       - @organizations.each do |p|
         tr
-          td= link_to p.orgname, organization_path(p)
+          td= link_to truncate(p.orgname, length: 40), organization_path(p)
           td= p.address
           td= p.phone
           td= p.city

@@ -6,7 +6,7 @@
     tbody
       - @priorities.each do |c|
         tr
-          td= link_to c.prname, edit_priority_path(c)
+          td= link_to truncate(c.prname, length: 40), edit_priority_path(c)
           td= c.days_to_close
 
   = foundation_paginate @priorities
