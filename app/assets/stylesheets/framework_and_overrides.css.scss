@@ -176,6 +176,24 @@ body {
 }
 .panel fieldset {
   font-size: rem-calc(12);
+  overflow: hidden;
+  hyphens: auto;
+  text-overflow: ellipsis;
+}
+.panel {
+  overflow: hidden;
+  hyphens: auto;
+  text-overflow: ellipsis;
+}
+.panel table {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.panel td {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .newform small {
   color: #de2d0f;
