@@ -8,7 +8,7 @@
       - @categories.each do |c|
         tr
           td= link_to truncate(c.catname, length: 40), category_path(c)
-          td= c.description
+          td= truncate(c.description, length: 40)
           td
             - if can? :create, current_user
               = link_to 'Edit ', edit_category_path(c)

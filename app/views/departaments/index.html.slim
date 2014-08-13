@@ -11,9 +11,9 @@
       - @departaments.each do |d|
         tr
           td= link_to truncate(d.depname, length: 40), departament_path(d)
-          td= d.organization
-          td= d.phone
-          td= d.addr
+          td= truncate(d.organization, length: 40)
+          td= truncate(d.phone, length: 40)
+          td= truncate(d.addr, length: 40)
           - if can? :create, current_user
             td
               = link_to 'Edit ', edit_departament_path(d)

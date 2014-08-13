@@ -8,7 +8,7 @@
       - @knowledge_bases.each do |c|
         tr
           td= link_to truncate(c.kbname, length: 40), knowledge_base_path(c)
-          td= c.description
+          td= truncate(c.description, length: 40)
           td
             - if can? :manage, current_user
               = link_to "Edit ", edit_knowledge_base_path(c)

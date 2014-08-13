@@ -11,10 +11,10 @@
       - @assets.each do |a|
         tr
           td= link_to truncate(a.name, length: 40), asset_path(a)
-          td= a.type
-          td= a.organization
-          td= a.account_number
-          td= a.user
+          td= truncate(a.type, length: 40)
+          td= truncate(a.organization, length: 40)
+          td= truncate(a.account_number, length: 40)
+          td= truncate(a.user, length: 40)
           td
             - if can? :create, current_user
               = link_to 'Edit', edit_asset_path(a)
