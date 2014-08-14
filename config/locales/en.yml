@@ -21,3 +21,9 @@
 
 en:
   hello: "Hello world"
+  phone_validates: "Phone number format - +XX(XXX)XXX-XXXX or +x(xxx)xxx-xxxxx"
+  confirm_new_problem: "You have searched for answers in the knowledge base?"
+  title_confirm: "Are you sure?"
+  problem_confirm_ok: "Yes! Save."
+  problem_confirm_cancel: "Oh! No!"
+
