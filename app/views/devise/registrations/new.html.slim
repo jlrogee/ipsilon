@@ -3,13 +3,13 @@
     h3 Sign up
     = devise_error_messages!
     .form-group
-      = f.label :email
+      = f.label :email, class: "required"
       = f.email_field :email, :autofocus => true, class: 'form-control'
     .form-group
-      = f.label :password
+      = f.label :password, class: "required"
       = f.password_field :password, class: 'form-control'
     .form-group
-      = f.label :password_confirmation
+      = f.label :password_confirmation, class: "required"
       = f.password_field :password_confirmation, class: 'form-control'
     .form-group
       = f.label :firstname, 'First name'
@@ -22,5 +22,5 @@
       = f.text_field :phone, class: 'form-control'
     .form-group
       = f.check_box :agree
-      = f.label "I agree to the IpsilonApp Terms"
+      = f.label "I agree to the IpsilonApp Terms", class: "required"
     = f.submit 'Sign up', :class => 'button right tiny radius'

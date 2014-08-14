@@ -75,6 +75,7 @@ body {
   max-width: 350px;
   margin: 0 auto;
 }
+.authform label.required:before{content:"* "}
 .authform form {
   @include panel();
   padding-bottom: 60px;
